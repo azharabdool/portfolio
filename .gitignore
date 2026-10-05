@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+*.tsbuildinfo
+.npm-cache/
+*.log
+.DS_Store
+.vercel/
+/public/images/typing-tutor.jpg

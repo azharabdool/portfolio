@@ -1,0 +1,14 @@
+ .cv-short { display: none; }
+@media (min-width:641px) and (max-width:960px) {
+  .city-image { object-position:right center; }
+}
+@media (max-width: 640px) {
+  .city-image { object-position: right center; }
+  .hero { height: min(720px, calc(100svh - 140px)); min-height: 580px; }
+}
+@media (max-width: 360px) {
+  .hero-actions { flex-direction: row; }
+  .hero-inner { padding-bottom: 55px; }
+  .cv-long { display: none; }
+  .cv-short { display: inline; }
+}
