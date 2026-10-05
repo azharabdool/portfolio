@@ -1,4 +1,4 @@
-export type ProjectDepth = { why: string; contribution: string; implementation: string[]; challenges: string; learned: string; improve: string; media?: {src:string;alt:string;caption:string}[] };
+export type ProjectDepth = { why: string; contribution: string; implementation: string[]; challenges: string; learned: string; improve: string; media?: {src:string;alt:string;caption:string;width:number;height:number}[] };
 export const projectDepth: Record<string, ProjectDepth> = {
   'machine-learning-mnist-classifier': {
     why: 'An introductory learning problem with a complete path from image pixels to training and held-out predictions: recognise ten handwritten digit classes.',
@@ -15,7 +15,7 @@ export const projectDepth: Record<string, ProjectDepth> = {
     challenges: 'A coordinate alone may not capture collection progress. The original loops, state stride and terminal-update behaviour constrain what the path evidence can establish.',
     learned: 'The practical importance of state design, exploration, reward shaping and termination in reinforcement learning.',
     improve: 'Review Markov state encoding, add explicit exploration and compare seeded completion rates across scenarios. Do not infer convergence from a successful path.',
-    media: [{src:'/images/rl-scenario2.png',alt:'Original scenario 2 package-collection path',caption:'Original submitted scenario 2 path.'},{src:'/images/rl-stochastic.png',alt:'Original stochastic scenario 3 path',caption:'Original stochastic scenario 3 path; not a success-rate benchmark.'}],
+    media: [{src:'/images/rl-scenario2.png',alt:'Original scenario 2 package-collection path',caption:'Original submitted scenario 2 path.',width:640,height:480},{src:'/images/rl-stochastic.png',alt:'Original stochastic scenario 3 path',caption:'Original stochastic scenario 3 path; not a success-rate benchmark.',width:640,height:480}],
   },
   'student-performance-data-mining': {
     why: 'Investigate academic engagement patterns, then compare classification approaches using a separate AI-usage dataset.',
@@ -32,7 +32,7 @@ export const projectDepth: Record<string, ProjectDepth> = {
     challenges: 'An AI-generated summary needs grounding in trusted analytical context. Screenshots cannot independently establish retrieval, model-call implementation or correctness.',
     learned: 'How enterprise data modelling and a usable analytical interface connect to an applied AI workflow.',
     improve: 'Add a shareable platform export or approved technical walkthrough, define evaluation cases for numerical fidelity and document access-control and failure behaviour.',
-    media: [{src:'/images/foundry-prompt.webp',alt:'Original Foundry infographic prompt interface',caption:'Original privacy-reviewed prompt interface; no live backend demonstration is implied.'}],
+    media: [{src:'/images/foundry-prompt.webp',alt:'Original Foundry infographic prompt interface',caption:'Original privacy-reviewed prompt interface; no live backend demonstration is implied.',width:1845,height:911}],
   },
   'uct-tutor-marketplace-app': {
     why: 'A collaborative capstone aimed at bringing tutor discovery and student/tutor session workflows into one mobile application.',
@@ -49,7 +49,7 @@ export const projectDepth: Record<string, ProjectDepth> = {
     challenges: 'Peripheral clocks, sample cadence and destination registers must align. Blocking delays inside an interrupt handler and DMA restart behaviour deserve review.',
     learned: 'Timer-triggered transfer, interrupt behaviour and the relationship between numerical samples and PWM hardware.',
     improve: 'Recover the exact board project and vendor licence, replace blocking ISR delays with deferred state changes, validate DMA mode and measure the actual output on hardware.',
-    media: [{src:'/images/stm32-lookup-tables.webp',alt:'Sine, sawtooth and triangle values reconstructed from the submitted lookup tables',caption:'Source-table reconstruction for documentation. Not measured analogue output or a new hardware test.'}],
+    media: [{src:'/images/stm32-lookup-tables.webp',alt:'Sine, sawtooth and triangle values reconstructed from the submitted lookup tables',caption:'Source-table reconstruction for documentation. Not measured analogue output or a new hardware test.',width:1500,height:600}],
   },
   'operating-systems-simulations': {
     why: 'Compare queue policies under competing requests and separately understand how a page-table mapping translates addresses.',

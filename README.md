@@ -2,13 +2,15 @@
 
 General software and computer engineering portfolio spanning applied AI/data, enterprise platforms, applications, embedded systems, systems and security/networks.
 
+Live: https://portfolio-livid-seven-890kon00eu.vercel.app
+
 ## Stack
 
 Next.js 16 App Router, React, TypeScript, Tailwind CSS 4 and Lucide icons. Static export with generated project detail pages. Animation uses CSS and a small scroll handler with reduced-motion support.
 
 ## Run
 
-Use Node 22.13+ or Node 24 LTS.
+Use Node 24, matching the production runtime and package engines.
 
 ```sh
 npm ci
@@ -24,6 +26,8 @@ npm run build
 npm run check:links
 npm run preview
 ```
+
+On this Windows machine, a cached Turbopack child-process error can be bypassed for local verification with `npm run build -- --webpack`. Vercel's clean production Turbopack build passes.
 
 `out/` is the deployment artifact; use static hosting with directory-index support. The preview serves http://localhost:3000. `next start` is not required for this export.
 

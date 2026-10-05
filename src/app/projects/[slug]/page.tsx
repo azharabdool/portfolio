@@ -35,7 +35,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
         <section><h2>My contribution</h2><p>{depth.contribution}</p></section>
         <section><h2>How it works</h2><p>{project.approach}</p><ol className="pipeline">{project.pipeline.map((step, index) => <li key={step}><span>{String(index + 1).padStart(2, '0')}</span>{step}</li>)}</ol></section>
         <section><h2>Technical implementation</h2><ul>{depth.implementation.map(item=><li key={item}>{item}</li>)}</ul></section>
-        {depth.media&&<section><h2>Visual evidence</h2>{depth.media.map(media=><figure className="detail-evidence" key={media.src}><Image src={media.src} alt={media.alt} width={1000} height={600} sizes="(max-width:640px) 90vw, 750px"/><figcaption>{media.caption}</figcaption></figure>)}</section>}
+        {depth.media&&<section><h2>Visual evidence</h2>{depth.media.map(media=><figure className="detail-evidence" key={media.src}><Image src={media.src} alt={media.alt} width={media.width} height={media.height} sizes="(max-width:640px) 90vw, 750px"/><figcaption>{media.caption}</figcaption></figure>)}</section>}
         {slug==='operating-systems-simulations'&&<section><h2>Address translation</h2><AlgorithmExplorer mode="memory"/><Link className="back-link" href="/engineering/virtual-memory/">Explore the memory exercise <ArrowRight size={16}/></Link><Link className="back-link" href="/engineering/club-concurrency/">Explore the separate Swing club simulation <ArrowRight size={16}/></Link></section>}
         <section><h2>Results & evidence</h2><ul>{project.results.map((result) => <li key={result}>{result}</li>)}</ul></section>
         <section><h2>Engineering challenges</h2><p>{depth.challenges}</p></section>

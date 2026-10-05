@@ -3,6 +3,7 @@ export type ArchiveProject = {
   summary: string; contribution: string; approach: string; results: string[];
   limitations: string; improvements: string; image?: string; imageAlt?: string;
   additionalImage?: string; additionalImageAlt?: string;
+  imageSize?: [number, number]; additionalImageSize?: [number, number];
   visual: 'graph' | 'memory' | 'threads' | 'signals' | 'image';
 };
 
@@ -10,6 +11,7 @@ export const archiveProjects: ArchiveProject[] = [
   {
     slug: 'transformer-build', title: 'From windings to a working transformer', course: 'UCT EEE2044S', year: '2021', tags: ['Transformer design', 'Electrical engineering', 'Load testing'], visual: 'signals',
     image: '/images/transformer-build.webp', imageAlt: 'Original submitted photograph of the collaborative transformer load-test apparatus',
+    imageSize: [798, 490], additionalImageSize: [1500, 600],
     additionalImage: '/images/transformer-load.webp', additionalImageAlt: 'Secondary voltage against current replotted from the original measured load-test table',
     summary: 'A collaborative transformer design, construction and load-test project, with retained build photographs and measurements.',
     contribution: 'The Group 7 submission names Azhar Abdool and Muhammad Motala. Design, construction and analysis are described as collaborative; individual task allocation is not established.',
@@ -21,6 +23,7 @@ export const archiveProjects: ArchiveProject[] = [
   {
     slug: 'club-concurrency', title: 'The concurrent club', course: 'UCT CSC2002', year: '2023', tags: ['Java', 'Swing', 'Atomic variables', 'Synchronisation'], visual: 'threads',
     image: '/images/club-concurrency.jpg', imageAlt: 'Actual source-built Swing club animation with a grid, bar and occupancy counters',
+    imageSize: [387, 494],
     summary: 'A graphical club simulation exploring admission, grid movement, shared counters and thread coordination.',
     contribution: 'Individual submission built on M. M. Kuttel teaching scaffolding. The named report describes start/pause flags, entrance/capacity checks and synchronised shared state. The report mentions an attempted Andre the Barman extension; a completed barman GUI implementation is not present.',
     approach: 'Each patron has a thread and a grid location. Grid blocks coordinate occupancy, atomic counters track waiting/inside/left patrons, and Swing displays the changing grid. The main application exposes Start, Pause and Quit.',
@@ -31,6 +34,7 @@ export const archiveProjects: ArchiveProject[] = [
   {
     slug: 'typing-tutor', title: 'Words in motion', course: 'UCT CSC2002', year: '2022', tags: ['Java', 'Swing', 'Threads', 'CountDownLatch'], visual: 'threads',
     image: '/images/typing-tutor.webp', imageAlt: 'Actual source-built Swing typing tutor, showing its original idle screen and score/pause controls',
+    imageSize: [987, 594],
     summary: 'A falling-word typing game coordinating animated words, keyboard input and score updates.',
     contribution: 'Individual coursework changes on a supplied typing-tutor framework. The nested submission includes an Azhar-authored Git log; the intact nested source was recovered without altering the damaged outer copy.',
     approach: 'WordMover threads wait on a shared start latch, CatchWord threads respond to typed words, and shared atomic flags coordinate start, pause and completion. A separate display and score updater refresh the Swing interface.',
@@ -41,6 +45,7 @@ export const archiveProjects: ArchiveProject[] = [
   {
     slug: 'dijkstra-experiment', title: 'Inside a shortest-path search', course: 'UCT CSC2001', year: '2023', tags: ['Java', 'Dijkstra', 'Priority queue', 'Graph experiments'], visual: 'graph',
     image: '/images/dijkstra-counts.webp', imageAlt: 'Original Dijkstra experiment edge-processing counts replotted from the retained results file',
+    imageSize: [1500, 600],
     summary: 'Generated weighted graphs and instrumented Dijkstra to count vertex and edge processing.',
     contribution: 'The named report and Git excerpts support authorship of GraphExperiment and counter additions. The supplied graph implementation retains its teaching/framework attribution; not every algorithm in Graph.java was authored for this experiment.',
     approach: 'Generate edge records, construct a directed graph and run binary-heap priority-queue Dijkstra from the first source vertex. Increment counters when processing vertices and outgoing edges, then append CSV-formatted experiment rows.',
@@ -69,6 +74,7 @@ export const archiveProjects: ArchiveProject[] = [
   {
     slug: 'frequency-response', title: 'Signals through a filter', course: 'UCT EEE2047S', year: '2021', tags: ['Python', 'NumPy', 'SymPy', 'Fourier series', 'Frequency response'], visual: 'signals',
     image: '/images/frequency-response.png', imageAlt: 'Retained magnitude and phase plots from the completed frequency-response Task 3 notebook cell',
+    imageSize: [397, 266],
     summary: 'Completed numerical and symbolic labs exploring Fourier reconstruction and filter magnitude/phase response.',
     contribution: 'Named Lab 2 and Lab 3 submission PDFs contain completed task code and figures. Supplied worksheet demonstrations are distinguished from the submitted task output.',
     approach: 'Compute complex Fourier coefficients, reconstruct finite harmonic sums and plot frequency response. The retained Task 3 output evaluates the submitted RLC expression with R=10, L=1 and C=1.',
@@ -79,6 +85,7 @@ export const archiveProjects: ArchiveProject[] = [
   {
     slug: 'dc-motor-characteristics', title: 'Measuring a physical system', course: 'UCT EEE2044S', year: '2021', tags: ['Electrical engineering', 'DC machines', 'Experimental analysis'], visual: 'signals',
     image: '/images/dc-motor-results.webp', imageAlt: 'Replotted recorded DC-motor speed against armature voltage at two field currents',
+    imageSize: [1500, 750],
     summary: 'A DC-machine lab investigating speed, armature voltage/current and torque relationships.',
     contribution: 'The submitted report names Azhar Abdool and records experimental tables. This is lab analysis, not a claim to have designed the motor or test equipment.',
     approach: 'A DC motor couples to a servo through a torque sensor. The lab changes armature voltage and load, records speed/current, and compares separately excited and series-connected configurations.',
