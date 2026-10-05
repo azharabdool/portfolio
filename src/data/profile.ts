@@ -50,6 +50,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'machine-learning-mnist-classifier', title: 'Handwritten digit recognition', category: 'AI & ML', year: '2024', context: 'UCT · CSC3022', visual: 'neural', featured: true,
+    repository: 'https://github.com/azharabdool/machine-learning-mnist-classifier',
     description: 'A PyTorch neural network that learns to classify MNIST digits from normalised image input.',
     tags: ['Python', 'PyTorch', 'Neural networks'],
     overview: 'Built a feedforward classifier for handwritten digits, including data loading, minibatch training, test evaluation and prediction for a local image.',
