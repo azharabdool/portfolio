@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {schedule,adcToCompare} from '../src/lib/lab-models.ts';
+const jobs=[{id:'A',arrival:0,burst:7},{id:'B',arrival:0,burst:3},{id:'C',arrival:1,burst:2},{id:'D',arrival:2,burst:4}];
+assert.deepEqual(schedule(jobs,'FCFS').map(j=>j.id),['A','B','C','D']);
+assert.deepEqual(schedule(jobs,'SJF').map(j=>j.id),['B','C','D','A']);
+assert.equal(schedule(jobs,'FCFS').at(-1).end,16);
+assert.equal(schedule(jobs,'SJF')[0].waiting,0);
+assert.equal(schedule([{id:'A',arrival:3,burst:2},{id:'B',arrival:9,burst:1}],'SJF')[1].start,9);
+assert.equal(adcToCompare(0),0);
+assert.equal(adcToCompare(4095),48000);
+assert.equal(adcToCompare(2048),24005);
+assert.equal(adcToCompare(-1),0);
+assert.equal(adcToCompare(9999),48000);
+console.log('10 scheduling/ADC checks pass, including gaps and boundary values.');

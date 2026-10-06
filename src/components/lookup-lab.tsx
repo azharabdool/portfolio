@@ -1,0 +1,8 @@
+'use client';
+import { useState } from 'react';
+export function LookupLab() {
+  const [query,setQuery]=useState('Gamma');
+  const rows=[{country:'Beta',value:20},{country:'Alpha',value:10},{country:'Gamma',value:30}];
+  const index=rows.findIndex(r=>r.country===query);const visited=query==='Beta'?['Beta']:query==='Alpha'?['Beta','Alpha']:['Beta','Gamma'];
+  return <div className="engineering-tool interactive-lab"><label>Country key<select aria-label="Synthetic country lookup" value={query} onChange={e=>setQuery(e.target.value)}>{['Alpha','Beta','Gamma','Missing'].map(x=><option key={x}>{x}</option>)}</select></label><svg className="graph-trace" viewBox="0 0 420 160" role="img" aria-label={`Synthetic binary-search-tree lookup for ${query}`}><path d="M210 40 L90 115 M210 40 L330 115" stroke="#718f9c" fill="none"/>{[{id:'Beta',x:210,y:40},{id:'Alpha',x:90,y:115},{id:'Gamma',x:330,y:115}].map(n=><g key={n.id}><circle cx={n.x} cy={n.y} r="28" fill={visited.includes(n.id)?'#b4d1d7':'#243b45'}/><text x={n.x} y={n.y+4} textAnchor="middle" fontSize="12" fill={visited.includes(n.id)?'#15232a':'#b3c9d1'}>{n.id}</text></g>)}</svg><div className="lab-readouts"><div>ARRAY COMPARISONS<strong>{index===-1?3:index+1}</strong></div><div>TREE COMPARISONS<strong>{visited.length}</strong></div><div>VALUE<strong>{rows[index]?.value??'Not found'}</strong></div></div><p className="evidence-caption">Synthetic demonstration data: three invented country keys and counts, fixed date 2022-01-01. The new interface mirrors linear scanning and the supplied BST&apos;s country+date comparison. It does not expose the original vaccinations CSV or claim a general tree speedup; sorted insertions can degenerate an unbalanced tree.</p></div>;
+}

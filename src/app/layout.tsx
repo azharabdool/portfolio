@@ -3,9 +3,13 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { profile } from '@/data/profile';
 import { siteOrigin } from '@/lib/site-origin';
+import { identityGraph } from '@/lib/seo';
+import { StructuredData } from '@/components/structured-data';
+import { PerformanceProbe } from '@/components/performance-probe';
 import './globals.css';
 import './mobile-city.css';
 import './launch-polish.css';
+import './engineering-experience.css';
 
 export const metadata: Metadata = {
   metadataBase: siteOrigin,
@@ -14,6 +18,8 @@ export const metadata: Metadata = {
   applicationName: 'Azhar Abdool Portfolio',
   alternates: { canonical: '/' },
   authors: [{ name: profile.name }],
+  robots: { index: true, follow: true },
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION ?? 'xf_oWYeL_2FZgFUnqpGidzIjBRZGArjcAPl7EByJ5eo' },
   keywords: ['Azhar Abdool', 'Software Engineer', 'Computer Engineer', 'Machine Learning', 'Palantir Foundry', 'STM32'],
   openGraph: { title: 'Azhar Abdool | Software & Computer Engineer', description: profile.intro, type: 'website', images: [{ url: '/images/social-preview.png', width: 1200, height: 630, alt: 'Azhar Abdool, Software & Computer Engineer, above a moonlit city' }] },
   twitter: { card: 'summary_large_image', title: 'Azhar Abdool | Software & Computer Engineer', description: profile.intro, images: ['/images/social-preview.png'] },
@@ -21,5 +27,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><a href="#main-content" className="skip-link">Skip to content</a><Header /><main id="main-content">{children}</main><Footer /></body></html>;
+  return <html lang="en"><body><StructuredData data={identityGraph}/><PerformanceProbe/><a href="#main-content" className="skip-link">Skip to content</a><Header /><main id="main-content">{children}</main><Footer /></body></html>;
 }

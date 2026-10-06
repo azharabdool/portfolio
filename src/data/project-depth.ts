@@ -6,7 +6,7 @@ export const projectDepth: Record<string, ProjectDepth> = {
     implementation: ['ToTensor and grayscale normalisation prepare 28x28 input; flattening produces 784 features.', 'Two fully connected hidden layers use ReLU, followed by a ten-class softmax. Adam, a 0.001 learning rate and batches of 32 drive seven original training epochs.', 'CrossEntropyLoss already expects logits. The retained extra softmax is a documented design limitation, not silently rewritten historical work.', 'Cleanup adds explicit dataset paths, subset/epoch controls, non-interactive prediction and bounded CPU smoke verification.'],
     challenges: 'Image shape, normalisation and label interpretation must agree across training and single-image prediction. Historical test accuracy and a tiny smoke run answer different questions.',
     learned: 'How preprocessing, tensor dimensions, minibatch optimisation and evaluation fit together; why loss/output conventions and reproducibility matter.',
-    improve: 'Use logits with cross-entropy in a clearly labelled new experiment, seed all randomness, save checkpoints and compare a convolutional baseline with per-class errors.',
+    improve: 'The new controlled experiments above add logits, fixed seeds and per-class confusion counts. Next: repeat across seeds, save checkpoints and compare a convolutional baseline on a predeclared evaluation protocol.',
   },
   'reinforcement-learning-four-rooms': {
     why: 'Explore how state-action values can drive package collection in deterministic and stochastic room transitions.',

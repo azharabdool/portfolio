@@ -1,0 +1,122 @@
+{
+  "status": "passed",
+  "python": "3.12.14",
+  "metrics": [
+    {
+      "Model": "Logistic Regression",
+      "Accuracy": 0.9475,
+      "Precision": 0.965254,
+      "Recall": 0.976107,
+      "F1": 0.97065
+    },
+    {
+      "Model": "Decision Tree",
+      "Accuracy": 0.928125,
+      "Precision": 0.94856,
+      "Recall": 0.97189,
+      "F1": 0.960083
+    }
+  ],
+  "confusion_matrices": {
+    "logistic_regression": [
+      [
+        127,
+        50
+      ],
+      [
+        34,
+        1389
+      ]
+    ],
+    "decision_tree": [
+      [
+        102,
+        75
+      ],
+      [
+        40,
+        1383
+      ]
+    ]
+  },
+  "note": "Fresh local execution using supplied datasets. No raw records written to publication directories.",
+  "schemas": [
+    {
+      "dataset": "student_performance.csv",
+      "rows": 1348,
+      "columns": [
+        "",
+        "academic_year",
+        "gender",
+        "qualification",
+        "study_level",
+        "modules",
+        "module_credits",
+        "grade_average",
+        "modules_passed",
+        "pass_rate",
+        "passed_all_modules",
+        "tutorial_classes_attended",
+        "tutorial_class_modules"
+      ],
+      "missing_cells": 11,
+      "missing_columns": [
+        {
+          "column": "grade_average",
+          "count": 3
+        },
+        {
+          "column": "tutorial_classes_attended",
+          "count": 4
+        },
+        {
+          "column": "tutorial_class_modules",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "dataset": "ai_impact_student_performance_dataset.csv",
+      "rows": 8000,
+      "columns": [
+        "student_id",
+        "age",
+        "gender",
+        "grade_level",
+        "study_hours_per_day",
+        "uses_ai",
+        "ai_usage_time_minutes",
+        "ai_tools_used",
+        "ai_usage_purpose",
+        "ai_dependency_score",
+        "ai_generated_content_percentage",
+        "ai_prompts_per_week",
+        "ai_ethics_score",
+        "last_exam_score",
+        "assignment_scores_avg",
+        "attendance_percentage",
+        "concept_understanding_score",
+        "study_consistency_index",
+        "improvement_rate",
+        "sleep_hours",
+        "social_media_hours",
+        "tutoring_hours",
+        "class_participation_score",
+        "final_score",
+        "passed",
+        "performance_category"
+      ],
+      "missing_cells": 2708,
+      "missing_columns": [
+        {
+          "column": "ai_tools_used",
+          "count": 1362
+        },
+        {
+          "column": "ai_usage_purpose",
+          "count": 1346
+        }
+      ]
+    }
+  ]
+}

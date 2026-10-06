@@ -30,7 +30,9 @@ Patron threads --> order queue --> FCFS or SJF service --> timing outputs
 
 ## Results
 
-The original report analyses scheduling metrics, but its numerical tables are not republished as freshly reproduced measurements. Local execution requires a JDK; only a Java 8 runtime was initially available. Runtime status is documented in PUBLISHABILITY.md.
+Verification on 2026-10-05 found an installed JDK 17. Both three-patron FCFS/SJF runs completed, and the address translator produced eight physical addresses from the supplied fixture.
+
+Important: the fresh scheduling runs expose invalid aggregate timing calculations. DrinkOrder's arrival field is not populated, producing epoch-sized turnaround values. Waiting/response aggregates are measured from the barman's global start instead of each order's arrival. Do not cite these as valid policy benchmarks. The original implementation is retained; fixing measurement boundaries is a future improvement.
 
 ## Running the Project
 
@@ -52,6 +54,8 @@ scheduling/: four Java simulation classes; virtual-memory/: address translator a
 Scheduling tradeoffs, queue policies, thread coordination and address translation.
 
 ## Possible Improvements
+
+The separate individual-translator public release now has defensive record handling and nonzero error status. Those labelled enhancements are mirrored into this clean copy; original source outside staging is unchanged. Eight valid translations and three invalid-record checks pass. The teaching scheduler remains private and its timing defects are not claimed as corrected historical results.
 
 Seed/order experiments, review timing measurement boundaries, add confidence intervals and validate truncated address records.
 

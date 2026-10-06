@@ -1,0 +1,282 @@
+{
+  "A": [
+    {
+      "current": "initial",
+      "visited": [],
+      "distances": {
+        "A": 0,
+        "B": null,
+        "C": null,
+        "D": null,
+        "E": null
+      }
+    },
+    {
+      "current": "A",
+      "visited": [
+        "A"
+      ],
+      "distances": {
+        "A": 0,
+        "B": 4,
+        "C": 1,
+        "D": null,
+        "E": null
+      }
+    },
+    {
+      "current": "C",
+      "visited": [
+        "A",
+        "C"
+      ],
+      "distances": {
+        "A": 0,
+        "B": 3,
+        "C": 1,
+        "D": 6,
+        "E": null
+      }
+    },
+    {
+      "current": "B",
+      "visited": [
+        "A",
+        "B",
+        "C"
+      ],
+      "distances": {
+        "A": 0,
+        "B": 3,
+        "C": 1,
+        "D": 4,
+        "E": null
+      }
+    },
+    {
+      "current": "D",
+      "visited": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "distances": {
+        "A": 0,
+        "B": 3,
+        "C": 1,
+        "D": 4,
+        "E": 7
+      }
+    },
+    {
+      "current": "E",
+      "visited": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "distances": {
+        "A": 0,
+        "B": 3,
+        "C": 1,
+        "D": 4,
+        "E": 7
+      }
+    }
+  ],
+  "B": [
+    {
+      "current": "initial",
+      "visited": [],
+      "distances": {
+        "A": null,
+        "B": 0,
+        "C": null,
+        "D": null,
+        "E": null
+      }
+    },
+    {
+      "current": "B",
+      "visited": [
+        "B"
+      ],
+      "distances": {
+        "A": null,
+        "B": 0,
+        "C": null,
+        "D": 1,
+        "E": null
+      }
+    },
+    {
+      "current": "D",
+      "visited": [
+        "B",
+        "D"
+      ],
+      "distances": {
+        "A": null,
+        "B": 0,
+        "C": null,
+        "D": 1,
+        "E": 4
+      }
+    },
+    {
+      "current": "E",
+      "visited": [
+        "B",
+        "D",
+        "E"
+      ],
+      "distances": {
+        "A": null,
+        "B": 0,
+        "C": null,
+        "D": 1,
+        "E": 4
+      }
+    }
+  ],
+  "C": [
+    {
+      "current": "initial",
+      "visited": [],
+      "distances": {
+        "A": null,
+        "B": null,
+        "C": 0,
+        "D": null,
+        "E": null
+      }
+    },
+    {
+      "current": "C",
+      "visited": [
+        "C"
+      ],
+      "distances": {
+        "A": null,
+        "B": 2,
+        "C": 0,
+        "D": 5,
+        "E": null
+      }
+    },
+    {
+      "current": "B",
+      "visited": [
+        "B",
+        "C"
+      ],
+      "distances": {
+        "A": null,
+        "B": 2,
+        "C": 0,
+        "D": 3,
+        "E": null
+      }
+    },
+    {
+      "current": "D",
+      "visited": [
+        "B",
+        "C",
+        "D"
+      ],
+      "distances": {
+        "A": null,
+        "B": 2,
+        "C": 0,
+        "D": 3,
+        "E": 6
+      }
+    },
+    {
+      "current": "E",
+      "visited": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "distances": {
+        "A": null,
+        "B": 2,
+        "C": 0,
+        "D": 3,
+        "E": 6
+      }
+    }
+  ],
+  "D": [
+    {
+      "current": "initial",
+      "visited": [],
+      "distances": {
+        "A": null,
+        "B": null,
+        "C": null,
+        "D": 0,
+        "E": null
+      }
+    },
+    {
+      "current": "D",
+      "visited": [
+        "D"
+      ],
+      "distances": {
+        "A": null,
+        "B": null,
+        "C": null,
+        "D": 0,
+        "E": 3
+      }
+    },
+    {
+      "current": "E",
+      "visited": [
+        "D",
+        "E"
+      ],
+      "distances": {
+        "A": null,
+        "B": null,
+        "C": null,
+        "D": 0,
+        "E": 3
+      }
+    }
+  ],
+  "E": [
+    {
+      "current": "initial",
+      "visited": [],
+      "distances": {
+        "A": null,
+        "B": null,
+        "C": null,
+        "D": null,
+        "E": 0
+      }
+    },
+    {
+      "current": "E",
+      "visited": [
+        "E"
+      ],
+      "distances": {
+        "A": null,
+        "B": null,
+        "C": null,
+        "D": null,
+        "E": 0
+      }
+    }
+  ]
+}

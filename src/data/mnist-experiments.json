@@ -1,0 +1,482 @@
+{
+  "label": "Portfolio reproducibility / enhancement experiments",
+  "run_date": "2026-10-06",
+  "run_utc": "2026-10-06T21:02:33.682371+00:00",
+  "seed": 42,
+  "test_seed": 66,
+  "train_count": 10000,
+  "validation_count": 2000,
+  "test_count": 2000,
+  "parameters": 109386,
+  "torch": "2.14.1+cpu",
+  "device": "CPU, two threads",
+  "split": "Fixed disjoint random training/validation subsets; fixed held-out official test subset; no test-driven tuning.",
+  "limitations": "Three epochs, one seed and subsets. Not comparable to the original seven-epoch full-data 95.71% log; timings include validation and are machine-specific. Softmax-before-cross-entropy and logits losses are different objectives.",
+  "configurations": [
+    {
+      "name": "original-softmax-32",
+      "logits": false,
+      "batch_size": 32,
+      "learning_rate": 0.001,
+      "epochs": 3,
+      "curve": [
+        {
+          "epoch": 1,
+          "train_loss": 1.7968651838302612,
+          "validation_loss": 1.6009161758422852,
+          "validation_accuracy": 0.8765
+        },
+        {
+          "epoch": 2,
+          "train_loss": 1.5967070707321167,
+          "validation_loss": 1.5965904273986817,
+          "validation_accuracy": 0.876
+        },
+        {
+          "epoch": 3,
+          "train_loss": 1.576016720199585,
+          "validation_loss": 1.5713233451843263,
+          "validation_accuracy": 0.899
+        }
+      ],
+      "test": {
+        "accuracy": 0.898,
+        "loss": 1.5665625457763672,
+        "count": 2000
+      },
+      "confusion_matrix": [
+        [
+          162,
+          0,
+          1,
+          0,
+          0,
+          4,
+          3,
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          222,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          1,
+          0,
+          184,
+          8,
+          4,
+          0,
+          2,
+          3,
+          5,
+          1
+        ],
+        [
+          0,
+          0,
+          3,
+          192,
+          0,
+          3,
+          1,
+          0,
+          2,
+          4
+        ],
+        [
+          1,
+          1,
+          3,
+          0,
+          194,
+          0,
+          3,
+          0,
+          1,
+          2
+        ],
+        [
+          3,
+          1,
+          1,
+          18,
+          6,
+          149,
+          1,
+          1,
+          4,
+          1
+        ],
+        [
+          1,
+          2,
+          0,
+          0,
+          2,
+          3,
+          194,
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          8,
+          9,
+          6,
+          6,
+          0,
+          0,
+          178,
+          1,
+          12
+        ],
+        [
+          0,
+          5,
+          1,
+          14,
+          1,
+          2,
+          5,
+          1,
+          150,
+          2
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          18,
+          1,
+          0,
+          1,
+          1,
+          171
+        ]
+      ],
+      "training_validation_seconds": 10.902
+    },
+    {
+      "name": "logits-32",
+      "logits": true,
+      "batch_size": 32,
+      "learning_rate": 0.001,
+      "epochs": 3,
+      "curve": [
+        {
+          "epoch": 1,
+          "train_loss": 0.6889776084899902,
+          "validation_loss": 0.36539500999450686,
+          "validation_accuracy": 0.8865
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.3573217739582062,
+          "validation_loss": 0.3320623388290405,
+          "validation_accuracy": 0.903
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.2890836494684219,
+          "validation_loss": 0.27171003532409665,
+          "validation_accuracy": 0.9185
+        }
+      ],
+      "test": {
+        "accuracy": 0.913,
+        "loss": 0.2812623386383057,
+        "count": 2000
+      },
+      "confusion_matrix": [
+        [
+          161,
+          0,
+          1,
+          0,
+          0,
+          3,
+          5,
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          223,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          192,
+          3,
+          1,
+          0,
+          2,
+          2,
+          6,
+          0
+        ],
+        [
+          0,
+          1,
+          4,
+          192,
+          0,
+          0,
+          1,
+          2,
+          4,
+          1
+        ],
+        [
+          1,
+          2,
+          3,
+          0,
+          194,
+          0,
+          2,
+          0,
+          1,
+          2
+        ],
+        [
+          3,
+          1,
+          1,
+          15,
+          5,
+          151,
+          1,
+          0,
+          6,
+          2
+        ],
+        [
+          0,
+          2,
+          2,
+          0,
+          4,
+          5,
+          186,
+          0,
+          3,
+          0
+        ],
+        [
+          0,
+          9,
+          10,
+          1,
+          7,
+          0,
+          0,
+          185,
+          1,
+          9
+        ],
+        [
+          0,
+          1,
+          2,
+          4,
+          0,
+          1,
+          2,
+          1,
+          170,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          15,
+          1,
+          0,
+          2,
+          2,
+          172
+        ]
+      ],
+      "training_validation_seconds": 7.943
+    },
+    {
+      "name": "logits-128",
+      "logits": true,
+      "batch_size": 128,
+      "learning_rate": 0.001,
+      "epochs": 3,
+      "curve": [
+        {
+          "epoch": 1,
+          "train_loss": 1.0105571584701538,
+          "validation_loss": 0.46749326515197753,
+          "validation_accuracy": 0.862
+        },
+        {
+          "epoch": 2,
+          "train_loss": 0.4152395977973938,
+          "validation_loss": 0.38495984649658205,
+          "validation_accuracy": 0.886
+        },
+        {
+          "epoch": 3,
+          "train_loss": 0.3543224800109863,
+          "validation_loss": 0.3422473649978638,
+          "validation_accuracy": 0.899
+        }
+      ],
+      "test": {
+        "accuracy": 0.901,
+        "loss": 0.3397076225280762,
+        "count": 2000
+      },
+      "confusion_matrix": [
+        [
+          162,
+          0,
+          3,
+          0,
+          0,
+          2,
+          3,
+          0,
+          4,
+          0
+        ],
+        [
+          0,
+          223,
+          1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          186,
+          4,
+          3,
+          0,
+          1,
+          4,
+          8,
+          0
+        ],
+        [
+          1,
+          1,
+          6,
+          186,
+          0,
+          3,
+          1,
+          3,
+          2,
+          2
+        ],
+        [
+          1,
+          1,
+          5,
+          0,
+          194,
+          0,
+          0,
+          0,
+          2,
+          2
+        ],
+        [
+          3,
+          1,
+          3,
+          14,
+          5,
+          151,
+          1,
+          0,
+          7,
+          0
+        ],
+        [
+          1,
+          2,
+          3,
+          0,
+          4,
+          5,
+          186,
+          0,
+          1,
+          0
+        ],
+        [
+          2,
+          9,
+          9,
+          1,
+          2,
+          1,
+          0,
+          191,
+          1,
+          6
+        ],
+        [
+          0,
+          2,
+          2,
+          4,
+          2,
+          3,
+          3,
+          1,
+          164,
+          0
+        ],
+        [
+          1,
+          1,
+          0,
+          0,
+          22,
+          0,
+          0,
+          4,
+          6,
+          159
+        ]
+      ],
+      "training_validation_seconds": 8.363
+    }
+  ]
+}

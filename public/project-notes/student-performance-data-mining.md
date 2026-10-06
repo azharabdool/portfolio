@@ -74,6 +74,15 @@ Cleaning data, separating descriptive segmentation from predictive classificatio
 
 Publish dataset provenance when authorised; use repeated stratified cross-validation, a majority-class baseline and metrics for the not-passed class; audit feature availability and fairness; package the pipeline for reproducible experiments.
 
+## Portfolio Enhancements
+
+Added a record-free aggregate evaluation JSON and a reproduced confusion-matrix figure. The report includes input column names, row counts and aggregate missing-cell counts, not individual records. Logistic Regression and Decision Tree metrics come from the actual notebook execution; passed is the positive class. Minority failure detection is weaker than positive-class F1 suggests.
+
+![Reproduced aggregate confusion matrices](results/evaluation.webp)
+
+Both CSV inputs remain excluded because their original sources/redistribution terms are unconfirmed. This publication contains individual code and derived aggregate documentation only. The browser case study provides a model comparison and schema explanation without exposing students.
+
+
 ## Portfolio Cleanup / Post-project Improvements
 
 Renamed the notebook; removed output tables, execution counts and private metadata; preserved code/analysis cells. Duplicate draft/export files and datasets excluded. Original results are described explicitly as historical evidence.

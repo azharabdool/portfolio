@@ -65,7 +65,13 @@ Representing reinforcement-learning state, defining rewards, implementing Q-valu
 
 ## Possible Improvements
 
-Fix state bookkeeping and terminal updates, add epsilon-greedy exploration, explicit episode limits, seeds and success/return statistics across repeated runs. These would be post-project improvements rather than original coursework results.
+Fix state bookkeeping and terminal updates, add epsilon-greedy exploration and evaluate success/return across repeated seeds. These are post-project extensions, not original coursework claims.
+
+## Portfolio Enhancements
+
+`record_trace.py` instruments the original Scenario1 locally with seed42, a total action bound and the verified blocked−15/package+80/move−1 reward function. The retained deterministic and stochastic episodes have15 and29 steps respectively. Browser replay uses these actual records; it is not a new Q-learning implementation or proof of convergence. Supplied environment source remains private.
+
+
 
 ## Portfolio Cleanup / Post-project Improvements
 

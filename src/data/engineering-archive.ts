@@ -9,6 +9,42 @@ export type ArchiveProject = {
 
 export const archiveProjects: ArchiveProject[] = [
   {
+    slug:'record-lookup',title:'Two ways to find a record',course:'UCT CSC2001',year:'2022',tags:['Java','Linear search','Binary search tree'],visual:'image',
+    summary:'Coursework record lookup by country/date using an array scan and a supplied binary-search-tree framework.',
+    contribution:'Recovered application sources in the user’s coursework, with a separately attributed Hussein Suleman tree framework. The framework is not claimed as Azhar’s own invention; exact application commit allocation is not reconstructed.',
+    approach:'Parse CSV fields into Vaccine records. compareTo orders concatenated country/date keys; the array scans inserted entries and the BST follows left/right comparisons. The interface accepts a date and multiple country queries.',
+    results:['Both Java lookup structures were recovered in source. New synthetic checks validate found and missing keys in a private cleaned copy.','The browser illustration uses three invented keys/counts and shows comparisons, not original public-health data.'],
+    limitations:'The original application hardcodes a relative CSV location and bounds the array. One earlier copy scans unfilled slots; the intact later copy uses records and returns null for absent keys. Tree shape depends on insertion order.',
+    improvements:'Provide an explicit data-path CLI, input validation and larger deterministic fixtures. Keep scaffold attribution and raw-data provenance separate from source authorship.',
+  },
+  {
+    slug:'relational-queries',title:'Questions across relational tables',course:'UCT CSC2001',year:'2022',tags:['SQL','Joins','Aggregates','Data contracts'],visual:'image',
+    summary:'Recovered Classic Models query exercises spanning record selection, counts, prices, inventory joins and updates.',
+    contribution:'Coursework query files recovered from the supplied assignment directory. The Classic Models sample schema/data is external; its ownership is not claimed. The new small demonstration schema and records are explicit portfolio additions.',
+    approach:'Join products to productlines through the productLine key, filter inventory and apply aggregates such as counts and maximum buyPrice. A cleaned demo corrects the malformed join-column reference in query13.',
+    results:['Original SQL includes a low-stock product/product-line query and a maximum-price calculation.','A new SQLite-compatible synthetic example verifies the corrected join without publishing the supplied database dump.'],
+    limitations:'The original MySQL environment was not restored. New SQLite checks cover the selected portable query, not every original statement or MySQL-specific behaviour.',
+    improvements:'Use explicit joins, verify foreign-key contracts, make updates transactional and add repeatable query-result tests.',
+  },
+  {
+    slug:'fourier-reconstruction',title:'A signal, harmonic by harmonic',course:'UCT EEE2047S',year:'2021',tags:['Python','SymPy','NumPy','Fourier series'],visual:'signals',
+    summary:'Completed symbolic/numerical Fourier tasks, with a new interactive reconstruction derived from the submitted period-eight pulse.',
+    contribution:'Azhar’s named Lab2 submission contains completed coefficient calculations and spectrum plots. Provided worksheet demonstrations remain attributed; the browser visualisation is new portfolio documentation.',
+    approach:'Integrate the period-eight pulse x(t)=1 for0≤t<4 to obtain complex Fourier coefficients. The real reconstruction has DC1/2 and odd sine terms2/(kπ) sin(kπt/4). The submitted tasks also analyse triangular and ramp-like signals.',
+    results:['Named submission retains actual spectral plots and completed SymPy integration.','The new finite-sum visual shows how harmonic count changes edge sharpness and ringing. It is a mathematical explanation, not an original lab screenshot.'],
+    limitations:'No new physical signal measurement. The finite sum does not remove discontinuity ringing; worksheet and personally completed task outputs must not be conflated.',
+    improvements:'Add numerical coefficient checks, convergence/error plots away from discontinuities and explicit phase-convention tests.',
+  },
+  {
+    slug:'attribute-validation',title:'When three records agree',course:'UCT CSC2004Z practical',year:'2022',tags:['Java','File parsing','Validation','Boundary cases'],visual:'image',
+    summary:'A named practical archive contains a small Java validator for triples of comma-separated card attributes.',
+    contribution:'The named submission ZIP contains Check.java; the inspected working source says “own attempt”. This is a small practical, not a full game, AI engine or production application.',
+    approach:'Read three space-separated records, split attributes and compare equality/distinctness. The retained implementation accepts all-identical records or all-different attributes.',
+    results:['A previously unlisted named archive and source were recovered without executing its compiled classes.','Inspection identifies a correctness gap: mixed same/different attribute combinations are not handled independently.'],
+    limitations:'The complete original specification was not recovered; the stricter code rule is documented rather than assumed to be a complete SET-game implementation. Malformed-input bounds are weak.',
+    improvements:'Confirm the intended rule, validate record shape, test mixed attribute cases and distinguish a specification correction from historical behaviour.',
+  },
+  {
     slug: 'transformer-build', title: 'From windings to a working transformer', course: 'UCT EEE2044S', year: '2021', tags: ['Transformer design', 'Electrical engineering', 'Load testing'], visual: 'signals',
     image: '/images/transformer-build.webp', imageAlt: 'Original submitted photograph of the collaborative transformer load-test apparatus',
     imageSize: [798, 490], additionalImageSize: [1500, 600],

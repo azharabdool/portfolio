@@ -1,0 +1,8 @@
+'use client';
+import { useState } from 'react';
+export function FourierLab() {
+  const [harmonics,setHarmonics]=useState(7);
+  const values=Array.from({length:401},(_,i)=>{const t=-8+i*.04;let value=.5;for(let k=1;k<=harmonics;k+=2)value+=2/(k*Math.PI)*Math.sin(k*Math.PI*t/4);return {t,value,target:((t%8)+8)%8<4?1:0};});
+  const path=(key:'value'|'target')=>values.map((v,i)=>`${i?'L':'M'}${i*1.4} ${145-v[key]*100}`).join(' ');
+  return <div className="engineering-tool interactive-lab"><p className="eyebrow">EEE2047S / FOURIER RECONSTRUCTION</p><label htmlFor="harmonics">Maximum harmonic<strong>{harmonics}</strong></label><input id="harmonics" aria-label="Maximum Fourier harmonic" type="range" min="1" max="17" step="2" value={harmonics} onChange={e=>setHarmonics(Number(e.target.value))}/><svg className="waveform-chart" viewBox="0 0 560 200" role="img" aria-label={`Eight-second periodic pulse reconstructed through harmonic ${harmonics}`}><path d={path('target')} stroke="#d1b697" strokeDasharray="5 5" fill="none"/><path d={path('value')} className="signal-line"/><text x="5" y="192" fill="#a9c1ca" fontSize="12">−8 s</text><text x="270" y="192" fill="#a9c1ca" fontSize="12">0</text><text x="535" y="192" fill="#a9c1ca" fontSize="12">8 s</text></svg><pre className="code-evidence"><code>x_N(t) = 1/2 + Σ [2/(kπ)] sin(kπt/4), k odd</code></pre><p className="evidence-caption">New browser visualisation of the period 8, 0≤t&lt;4 pulse in completed Lab 2 Question 2. Dashed: ideal periodic pulse; solid: finite Fourier sum. The coefficient-derived model is not a new hardware measurement. More harmonics sharpen edges; ringing near discontinuities remains.</p></div>;
+}

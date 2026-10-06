@@ -11,7 +11,7 @@ export function Hero() {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     let frame = 0;
     const update = () => {
-      if (reduced.matches || frame) return;
+      if (reduced.matches || frame || window.scrollY > window.innerHeight * 1.25) return;
       frame = window.requestAnimationFrame(() => {
         if (scene.current) scene.current.style.setProperty('--parallax', `${Math.min(window.scrollY * 0.09, 48)}px`);
         frame = 0;

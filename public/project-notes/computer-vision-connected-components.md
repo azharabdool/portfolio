@@ -52,6 +52,8 @@ Image representation, graph traversal, object ownership and C++ copy/move semant
 
 ## Possible Improvements
 
+The separate synthetic-only release now includes validated CLI arguments and bounded/truncation-checked P5 parsing. Those changes are mirrored into this private full copy; supplied fixtures and teaching test material remain withheld from public release.
+
 Validate malformed PGM/CLI inputs, extend image-format support and independently verify component statistics.
 
 ## Portfolio Cleanup / Post-project Improvements

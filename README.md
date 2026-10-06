@@ -2,7 +2,7 @@
 
 General software and computer engineering portfolio spanning applied AI/data, enterprise platforms, applications, embedded systems, systems and security/networks.
 
-Live: https://portfolio-livid-seven-890kon00eu.vercel.app
+Primary URL: https://azharabdool.vercel.app. The original generated alias remains functional.
 
 ## Stack
 
@@ -35,6 +35,8 @@ On this Windows machine, a cached Turbopack child-process error can be bypassed 
 
 `src/data/profile.ts` is the main content registry; `project-depth.ts` adds technical case-study content and `engineering-archive.ts` contains recovered engineering history. Six featured projects demonstrate breadth. The full collection has filters and static detail routes. The default CV is General Engineering; the separate AI CV remains available. Only verified public repository URLs are shown.
 
+The enhanced collection includes25 technical case studies, a Profile page, CV context and an interactive Engineering Lab. Source-traced graph/RL replays, source-equation embedded and Fourier tools, synthetic scheduling, and real MNIST comparison outputs are explicitly distinguished from historical submissions. SEO uses one canonical host, named metadata, Person/WebSite/ProfilePage/CreativeWork and a narrowly scoped SoftwareSourceCode entity.
+
 ## Assets And Evidence
 
 `public/images/night-city.webp`: original generated moon/city artwork. Other imagery includes approved Foundry screenshots, source-built Swing GUI captures, retained coursework plots, documented replots and synthetic C++ input/output. New explanatory visualisations are distinguished from original execution. `public/project-notes/`: project documentation. Two selectable-text ATS CVs are included.
@@ -43,4 +45,6 @@ Credentials distinguish earned professional certification, achievement certifica
 
 ## Deployment
 
-On Vercel select Next.js, build with `npm run build` and use output directory `out`. No runtime credentials are needed. The canonical origin uses `SITE_URL` when explicitly set, otherwise Vercel's `VERCEL_PROJECT_PRODUCTION_URL`. For another static host set `SITE_URL` to the actual HTTPS origin before building. Keep `.vercel/` and `.env` files untracked.
+On Vercel select Next.js, build with `npm run build` and use output directory `out`. No runtime credentials are needed. The canonical origin defaults to https://azharabdool.vercel.app and can be overridden deliberately with SITE_URL for another host. Keep .vercel and .env files untracked.
+
+The maintained default canonical is now https://azharabdool.vercel.app; SITE_URL can override it deliberately. From the private refresh parent, tools/Deploy-Portfolio.ps1 deploys and updates both live aliases. Google-site-verification metadata is a user-supplied public ownership tag, not an account credential. A lightweight browser-local LCP/CLS diagnostic sends nothing to a server; DOM values are not field Web Vitals certification.

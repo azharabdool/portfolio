@@ -71,6 +71,18 @@ Implementing a neural network in PyTorch, normalising image input, training with
 
 Use logits with cross entropy; seed experiments; save model checkpoints; add confusion matrices and robustness tests; evaluate a CNN as a separate extension.
 
+## Portfolio Enhancements
+
+The original classifier retains its historical softmax/output convention. `experiments.py` adds a separate logits-based comparison, fixes import-time model/optimizer allocation, records losses/confusion matrices and produces real held-out prediction/failure examples.
+
+```sh
+python experiments.py --data-dir data --download
+```
+
+The committed report uses seed42, 10,000 training examples, 2,000 disjoint validation examples, 2,000 fixed official test examples, Adam0.001 and three epochs. Test subsets use seed66. Results: original softmax/batch32 89.8%; logits/batch32 91.3%; logits/batch128 90.1%. These new subset experiments do not reproduce or replace the original full-data95.71% result. Cross-entropy losses differ by output convention; timings include validation and are machine-specific. No test-driven tuning was performed.
+
+`results/enhancement/experiments.json` contains actual epoch-level losses, validation accuracy and all test confusion counts. `predictions.webp` shows the first four correct and first four wrong logits/batch32 predictions in fixed test order. Dataset caches remain excluded. More seeds, saved checkpoints and an independent CNN baseline remain future work.
+
 ## Portfolio Cleanup / Post-project Improvements
 
 Dataset creation and training moved into the entry point; configurable data directory, smoke limits and non-interactive mode added; missing `ImageFilter` import fixed. Original architecture, training default and historical result retained. The original files remain outside this clean copy.

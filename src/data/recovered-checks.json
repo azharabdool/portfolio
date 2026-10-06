@@ -1,0 +1,27 @@
+{
+  "lookup": "8 synthetic lookup checks passed",
+  "sql": {
+    "synthetic_rows": 2,
+    "corrected_join_rows": 1,
+    "status": "passed"
+  },
+  "attribute_validation": {
+    "cases": 3,
+    "original_rule_output": [
+      "Valid",
+      "Valid",
+      "Invalid"
+    ],
+    "status": "passed",
+    "note": "Synthetic identical / all-different / mixed-attribute cases; no game-specification claim."
+  },
+  "cpp_invalid_inputs": {
+    "checks": 10,
+    "status": "passed"
+  },
+  "address_translator": {
+    "valid_translations": 8,
+    "invalid_records": 3,
+    "status": "passed"
+  }
+}

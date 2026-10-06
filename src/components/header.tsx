@@ -24,6 +24,7 @@ export function Header() {
         <nav aria-label="Main navigation" id="main-navigation" className={open ? 'navigation is-open' : 'navigation'}>
           <Link href="/" className="mobile-home" onClick={() => setOpen(false)}>Home</Link>
           {navigation.map((label) => <Link key={label} href={`/#${label.toLowerCase()}`} onClick={() => setOpen(false)}>{label}</Link>)}
+          <Link href="/lab/" onClick={()=>setOpen(false)}>Lab</Link>
         </nav>
         <a className="header-contact" href={`mailto:${profile.email}`}>Let&apos;s talk <ArrowUpRight size={15} /></a>
         <button className="icon-button menu-toggle" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-controls="main-navigation" aria-expanded={open} onClick={() => setOpen(!open)} title={open ? 'Close navigation' : 'Open navigation'}>
