@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { ArrowRight, Cpu } from 'lucide-react';
 import { schedule, adcToCompare, type Job } from '@/lib/lab-models';
 
 export function SchedulingLab() {
@@ -12,8 +13,15 @@ export function SchedulingLab() {
 }
 export function EmbeddedLab() {
   const [adc,setAdc]=useState(2048);const compare=adcToCompare(adc);const duty=compare/48000;
-  const points=Array.from({length:161},(_,i)=>`${i?'L':'M'}${i*3.5} ${i%40<duty*40?24:95}`).join(' ');
-  return <div className="engineering-tool interactive-lab"><p className="eyebrow">ADC → TIM3 CCR3 → PWM</p><label htmlFor="adc-input">12-bit input<strong>{adc}</strong></label><input id="adc-input" aria-label="ADC input" type="range" min="0" max="4095" value={adc} onChange={e=>setAdc(Number(e.target.value))}/><div className="lab-readouts"><div>ADC RANGE<strong>0–4095</strong></div><div>ARR<strong>47999</strong></div><div>CCR3<strong>{compare}</strong></div><div>DUTY<strong>{(duty*100).toFixed(1)}%</strong></div></div><svg className="waveform-chart" viewBox="0 0 560 125" role="img" aria-label={`Ideal PWM at ${(duty*100).toFixed(1)} percent duty cycle`}><path d="M0 95 H560 M0 24 H560" className="chart-grid"/><path d={points} className="signal-line"/></svg><pre className="code-evidence"><code>CCR = (adc_value * (47999 + 1)) / 4095</code></pre><p className="evidence-caption">Portfolio interactive visualisation of the submitted integer mapping. Ideal PWM, not a hardware trace. Source: ADCtoCCR and TIM3 configuration. At maximum input CCR=48000 exceeds ARR and represents full duty. Nominal carrier: 8 MHz / 48000 ≈ 166.7 Hz, conditional on the documented clock.</p></div>;
+  const points = duty === 0 ? 'M0 95 H560' : duty === 1 ? 'M0 24 H560' : 'M0 95 ' + Array.from({ length: 4 }, (_, i) => `V24 H${i * 140 + duty * 140} V95 H${(i + 1) * 140}`).join(' ');
+  return <div className='engineering-tool interactive-lab embedded-instrument'>
+    <div className='instrument-header'><p className='eyebrow'><Cpu size={17} /> STM32 / SIGNAL DESK</p><span><i /> SOURCE-DERIVED MAPPING</span></div>
+    <label htmlFor='adc-input'>Virtual ADC / 12-bit input<strong>{adc} / 4095</strong></label><input id='adc-input' aria-label='ADC input' type='range' min='0' max='4095' value={adc} onChange={e => setAdc(Number(e.target.value))} />
+    <div className='instrument-signal-path'><div>ADC RAW<strong>{adc}</strong><small>0–4095</small></div><ArrowRight size={18} /><div>TIM3 / CCR3<strong>{compare}</strong><small>ARR 47999</small></div><ArrowRight size={18} /><div>PWM DUTY<strong>{(duty * 100).toFixed(1)}%</strong><small>Ideal output</small></div></div>
+    <div className='instrument-scope'><div className='scope-caption'><span>IDEAL PWM / FOUR PERIODS</span><span>NORMALISED TIME</span></div><svg className='waveform-chart' viewBox='0 0 560 125' role='img' aria-label={`Ideal PWM at ${(duty * 100).toFixed(1)} percent duty cycle`}><path d='M0 95 H560 M0 24 H560' className='chart-grid' />{[0, 140, 280, 420, 560].map(x => <line key={x} x1={x} y1='10' x2={x} y2='110' className='chart-grid' />)}<path d={points} className='signal-line' vectorEffect='non-scaling-stroke' /></svg><i className='scope-sweep' aria-hidden='true' /></div>
+    <pre className='code-evidence'><code>CCR = (adc_value * (47999 + 1)) / 4095</code></pre><p className='evidence-caption'>Portfolio simulation of the submitted mapping, not live STM32 hardware. Ideal PWM, not an oscilloscope trace. Source: ADCtoCCR and TIM3 configuration. At maximum input CCR=48000 exceeds ARR and represents full duty. Nominal carrier: 8 MHz / 48000 ≈ 166.7 Hz, conditional on the documented clock.</p>
+    <h3>Waveform generation / separate practical</h3><div className='dma-flow' aria-label='Lookup table to timer-triggered DMA to PWM register'><span>WAVEFORM LUT</span><ArrowRight size={15} /><span>TIMER TRIGGER</span><ArrowRight size={15} /><span>DMA</span><ArrowRight size={15} /><span>PWM REGISTER</span></div><p className='evidence-caption'>The separate timer/DMA practical transfers lookup-table values into the PWM compare register. It is not an ADC-to-DMA pipeline, and neither practical is claimed as newly hardware-verified.</p>
+  </div>;
 }
 export function ConcurrencyLab() {
   const [workers,setWorkers]=useState(4);

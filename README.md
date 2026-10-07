@@ -22,6 +22,7 @@ npm run dev -- --port 3000
 ```sh
 npm run typecheck
 npm run lint
+npm test
 npm run build
 npm run check:links
 npm run preview
@@ -36,6 +37,8 @@ On this Windows machine, a cached Turbopack child-process error can be bypassed 
 `src/data/profile.ts` is the main content registry; `project-depth.ts` adds technical case-study content and `engineering-archive.ts` contains recovered engineering history. Six featured projects demonstrate breadth. The full collection has filters and static detail routes. The default CV is General Engineering; the separate AI CV remains available. Only verified public repository URLs are shown.
 
 The enhanced collection includes25 technical case studies, a Profile page, CV context and an interactive Engineering Lab. Source-traced graph/RL replays, source-equation embedded and Fourier tools, synthetic scheduling, and real MNIST comparison outputs are explicitly distinguished from historical submissions. SEO uses one canonical host, named metadata, Person/WebSite/ProfilePage/CreativeWork and a narrowly scoped SoftwareSourceCode entity.
+
+The homepage's single moon rises and sets through the continuous night-city scene. UCT is highlighted in the hero, education feature and source context, with a restrained official ranking link. Four engineering teasers lead to the complete Lab rather than repeating the entire archive on the homepage. See [scene architecture and evidence boundaries](MOON_EXPERIENCE.md).
 
 ## Assets And Evidence
 

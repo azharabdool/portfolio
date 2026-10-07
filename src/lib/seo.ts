@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { profile } from '@/data/profile';
 import { siteOrigin } from './site-origin';
+import { uct } from '@/data/education';
 
 export const absoluteUrl = (path: string) => new URL(path, siteOrigin).href;
 export const personId = absoluteUrl('/#azhar-abdool');
@@ -16,7 +17,7 @@ export const identityGraph = {
   '@context': 'https://schema.org', '@graph': [
     { '@type': 'Person', '@id': personId, name: profile.name, url: absoluteUrl('/profile/'), jobTitle: profile.title,
       description: profile.about, sameAs: [profile.github, profile.linkedin, 'https://www.credly.com/users/azhar-abdool'],
-      alumniOf: { '@type': 'CollegeOrUniversity', name: 'University of Cape Town', url: 'https://www.uct.ac.za/' },
+      alumniOf: { '@type': 'CollegeOrUniversity', '@id': uct.url + '#university', name: uct.name, alternateName: 'UCT', url: uct.url },
       worksFor: { '@type': 'Organization', name: 'NCT Forestry' },
       hasCredential: { '@type': 'EducationalOccupationalCredential', name:'Junior Forward Deployed Engineer', credentialCategory:'Certificate of achievement', recognizedBy:{'@type':'Organization',name:'Ontology University'}, description:'Issued 10 June 2026 after a 12-week practitioner programme and independent examiner defence. A programme achievement, not an employment title.' },
       knowsAbout: ['Software engineering', 'Computer engineering', 'Applied machine learning', 'Data engineering', 'Embedded systems', 'Computer networks'] },

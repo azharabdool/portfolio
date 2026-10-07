@@ -10,7 +10,8 @@
     "preview": "node tools/preview.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "check:links": "node tools/check-links.mjs"
+    "check:links": "node tools/check-links.mjs",
+    "test": "node --test tools/test-moon-story.mjs tools/test-lab-models.mjs"
   },
   "dependencies": {
     "next": "16.3.8",

@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, BrainCircuit, Code2, Cpu, Network, Server } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
@@ -36,7 +35,7 @@ export function CityTransition() {
   const district=districts[selected];
   return <section className="city-story" ref={section} aria-labelledby="city-story-title">
     <div className="city-stage">
-      <div className="city-backdrop" aria-hidden="true"><Image src="/images/night-city.webp" alt="" fill sizes="100vw"/><div className="city-foreground"><Image src="/images/night-city.webp" alt="" fill sizes="100vw"/></div></div>
+      <div className='city-backdrop' aria-hidden='true'><div className='city-foreground' /></div>
       <div className="city-story-shade" aria-hidden="true"/>
       <div className="city-introduction container"><p className="eyebrow">ONE CONNECTED FOUNDATION</p><h2 id="city-story-title">Every system.<br/><span>A different perspective.</span></h2><p>Software, intelligence and the physical world.</p></div>
       <svg className="city-network" viewBox="0 0 1200 550" role="img" aria-label={`Engineering districts connected: ${district.name} selected`}>

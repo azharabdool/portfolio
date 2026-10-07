@@ -7,7 +7,7 @@ export const profile = {
   cv: '/Azhar-Abdool-General-Engineering-CV.pdf',
   aiCv: '/Azhar-Abdool-AI-Engineering-CV.pdf',
   intro: 'Building intelligent software, data platforms and real-world systems.',
-  about: 'My background connects software and computer engineering. I studied Computer Science and Computer Engineering at the University of Cape Town and now develop enterprise software at NCT Forestry. That foundation carries through to my work with machine learning, Foundry data workflows, embedded systems and networks.',
+  about: 'My background connects software and computer engineering. I graduated from the University of Cape Town in Computer Science and Computer Engineering in 2025 and now develop enterprise software at NCT Forestry. That foundation carries through to my work with machine learning, Foundry data workflows, embedded systems and networks.',
   aboutDetail: 'I work across the software-to-hardware spectrum, with a growing focus on intelligent, data-driven systems. My current part-time Honours study in Security & Network Engineering adds a security perspective to how I build and integrate systems.',
 };
 
@@ -74,7 +74,7 @@ export const projects: Project[] = [
     attribution: 'Eduvos coursework, 2026. Source notebook preserved; private metadata and individual-record outputs cleared.',
   },
   {
-    slug: 'uct-tutor-marketplace-app', title: 'Connecting students with tutors', category: 'Software', year: '2024', context: 'UCT · Group capstone', visual: 'mobile', featured: true,
+    slug: 'uct-tutor-marketplace-app', title: 'Connecting students with tutors', category: 'Software', year: '2024', context: 'UCT · CSC3003S · Collaborative', visual: 'mobile', featured: true,
     description: 'A React Native application for tutor discovery, registration, profiles and session workflows.',
     tags: ['React Native', 'Expo', 'Firebase'],
     overview: 'TuToR is a group capstone application for students and tutors in the UCT network, bringing discovery, profiles, meeting/session screens and feedback into a mobile workflow.',
@@ -129,7 +129,7 @@ export const projects: Project[] = [
     attribution: 'Authored coursework with supplied image fixtures and a third-party Catch test header.',
   },
   {
-    slug: 'networking-p2p-chat-prototype', title: 'Coordinating peers over a network', category: 'Security & Networks', year: '2024', context: 'UCT · Group assignment', visual: 'network',
+    slug: 'networking-p2p-chat-prototype', title: 'Coordinating peers over a network', category: 'Security & Networks', year: '2024', context: 'UCT · CSC3002 · Collaborative', visual: 'network',
     description: 'A Python socket prototype separating TCP coordination from UDP peer messaging.', tags: ['Python', 'TCP / UDP', 'Sockets'],
     overview: 'Register and discover peers through a central server, then send chat messages directly as UDP datagrams.',
     approach: 'A threaded TCP control service manages users and addresses; clients run a UDP receive thread for peer messages. The protocol is delimiter-based and instructional.',

@@ -8,3 +8,5 @@ out/
 .npm-cache/
 *.log
 public/images/typing-tutor.jpg
+AGENTS.md
+CLAUDE.md
