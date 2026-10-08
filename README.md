@@ -36,15 +36,15 @@ On this Windows machine, a cached Turbopack child-process error can be bypassed 
 
 `src/data/profile.ts` is the main content registry; `project-depth.ts` adds technical case-study content and `engineering-archive.ts` contains recovered engineering history. Six featured projects demonstrate breadth. The full collection has filters and static detail routes. The default CV is General Engineering; the separate AI CV remains available. Only verified public repository URLs are shown.
 
-The enhanced collection includes25 technical case studies, a Profile page, CV context and an interactive Engineering Lab. Source-traced graph/RL replays, source-equation embedded and Fourier tools, synthetic scheduling, and real MNIST comparison outputs are explicitly distinguished from historical submissions. SEO uses one canonical host, named metadata, Person/WebSite/ProfilePage/CreativeWork and a narrowly scoped SoftwareSourceCode entity.
+The enhanced collection includes27 technical case studies, a Profile page, credential library, CV context and an interactive Engineering Lab. Source-traced graph/RL replays, source-equation embedded and Fourier tools, synthetic scheduling, and real MNIST comparison outputs are explicitly distinguished from historical submissions. SEO uses one canonical host, named metadata, Person/WebSite/ProfilePage/CreativeWork and a narrowly scoped SoftwareSourceCode entity.
 
-The homepage's single moon rises and sets through the continuous night-city scene. UCT is highlighted in the hero, education feature and source context, with a restrained official ranking link. Four engineering teasers lead to the complete Lab rather than repeating the entire archive on the homepage. See [scene architecture and evidence boundaries](MOON_EXPERIENCE.md).
+The homepage's single moon starts high and only sets during forward scroll through the continuous night-city scene. Native reduced motion is respected, with an explicit moon play/pause control. UCT remains prominent; year-matched official handbook context is distinct from actual project implementation. Four engineering spotlights and a stronger Lab entry lead into the full archive. See [scene architecture and evidence boundaries](MOON_EXPERIENCE.md).
 
 ## Assets And Evidence
 
 `public/images/night-city.webp`: original generated moon/city artwork. Other imagery includes approved Foundry screenshots, source-built Swing GUI captures, retained coursework plots, documented replots and synthetic C++ input/output. New explanatory visualisations are distinguished from original execution. `public/project-notes/`: project documentation. Two selectable-text ATS CVs are included.
 
-Credentials distinguish earned professional certification, achievement certificate and training. The supplied SAP certification's expiration is shown. Project scope and shared authorship are explained on detail pages.
+The credential library contains ten genuine privacy-reviewed issuer documents with rendered previews, exact recorded dates and verified public destinations where available. Professional certification, achievement and training remain distinct; SAP expiry is shown. Project scope and shared authorship are explained on detail pages. The two new WAF/architecture studies are bounded documentation, not claims of a running secure microservices stack.
 
 ## Deployment
 

@@ -10,6 +10,8 @@ import { pageMetadata, caseStudySchema } from '@/lib/seo';
 import { ConcurrencyLab } from '@/components/systems-lab';
 import { FourierLab } from '@/components/signal-lab';
 import { LookupLab } from '@/components/lookup-lab';
+import { CourseContext } from '@/components/course-context';
+import { SecurityStudy } from '@/components/security-study';
 
 export const dynamicParams = false;
 export function generateStaticParams() { return archiveProjects.map(({slug})=>({slug})); }
@@ -22,8 +24,11 @@ export default async function ArchiveDetail({params}:{params:Promise<{slug:strin
   const next=archiveProjects[(archiveProjects.indexOf(p)+1)%archiveProjects.length];
   return <article className="project-detail container">
     <StructuredData data={caseStudySchema(p.title,p.summary,`/engineering/${slug}/`,p.contribution)}/>
-    <Link className="back-link" href="/#engineering-archive"><ArrowLeft size={16}/> Engineering archive</Link>
+    <Link className="back-link" href="/lab/"><ArrowLeft size={16}/> Engineering Lab</Link>
     <div className="detail-heading"><p className="eyebrow">{p.course} / {p.year}</p><h1>{p.title}</h1><p className="lead">{p.summary}</p><div className="project-tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div>
+    <CourseContext label={p.course} year={p.year}/>
+    {slug === 'waf-request-filtering' && <SecurityStudy mode='waf'/>}
+    {slug === 'microservices-architecture-study' && <SecurityStudy mode='services'/>}
     {p.image&&<figure className="archive-output"><Image src={p.image} alt={p.imageAlt!} width={p.imageSize?.[0]??1000} height={p.imageSize?.[1]??600} sizes="(max-width:640px) 100vw, 1000px"/><figcaption>{p.imageAlt}</figcaption></figure>}
     {p.additionalImage&&<figure className="archive-output"><Image src={p.additionalImage} alt={p.additionalImageAlt!} width={p.additionalImageSize?.[0]??1000} height={p.additionalImageSize?.[1]??400} sizes="(max-width:640px) 100vw, 1000px"/><figcaption>{p.additionalImageAlt}</figcaption></figure>}
     {(p.visual==='graph'||p.visual==='memory')&&<AlgorithmExplorer mode={p.visual}/>}

@@ -9,7 +9,7 @@ import { profile } from '@/data/profile';
 const navigation = [
   { label: 'Projects', id: 'projects' }, { label: 'Lab', id: 'engineering-archive', href: '/lab/' },
   { label: 'About', id: 'about' }, { label: 'Experience', id: 'experience' }, { label: 'Skills', id: 'skills' },
-  { label: 'Education', id: 'education' }, { label: 'Credentials', id: 'certifications' }, { label: 'Contact', id: 'contact' },
+  { label: 'Education', id: 'education' }, { label: 'Credentials', id: 'certifications', href: '/credentials/' }, { label: 'Contact', id: 'contact' },
 ];
 
 export function Header() {
@@ -41,7 +41,7 @@ export function Header() {
         </Link>
         <nav aria-label="Main navigation" id="main-navigation" className={open ? 'navigation is-open' : 'navigation'}>
           <Link href="/" className="mobile-home" onClick={() => setOpen(false)}>Home</Link>
-          {navigation.map(item => <Link key={item.id} href={item.href ?? `/#${item.id}`} className={item.href ? 'nav-lab' : undefined} aria-current={(pathname === '/' && active === item.id) || (pathname === '/lab/' && item.href) ? 'location' : undefined} onClick={() => { setOpen(false); setActive(item.id); }}>{item.href && <FlaskConical size={13} aria-hidden='true' />}{item.label}</Link>)}
+          {navigation.map(item => <Link key={item.id} href={item.href ?? `/#${item.id}`} className={item.id === 'engineering-archive' ? 'nav-lab' : undefined} aria-current={item.href && pathname.replace(/\/$/, '') === item.href.replace(/\/$/, '') ? 'page' : pathname === '/' && active === item.id ? 'location' : undefined} onClick={() => { setOpen(false); setActive(item.id); }}>{item.id === 'engineering-archive' && <FlaskConical size={13} aria-hidden='true' />}{item.label}</Link>)}
         </nav>
         <a className="header-contact" href={`mailto:${profile.email}`}>Let&apos;s talk <ArrowUpRight size={15} /></a>
         <button ref={toggle} className="icon-button menu-toggle" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-controls="main-navigation" aria-expanded={open} onClick={() => setOpen(!open)} title={open ? 'Close navigation' : 'Open navigation'}>

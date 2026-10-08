@@ -7,5 +7,5 @@ export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const origin = siteOrigin;
-  return ['/', '/profile/', '/resume/', '/lab/', ...projects.map(({ slug }) => `/projects/${slug}/`), ...archiveProjects.map(({slug})=>`/engineering/${slug}/`)].map((route) => ({ url: new URL(route, origin).href }));
+  return ['/', '/profile/', '/resume/', '/lab/', '/credentials/', ...projects.map(({ slug }) => `/projects/${slug}/`), ...archiveProjects.map(({slug})=>`/engineering/${slug}/`)].map((route) => ({ url: new URL(route, origin).href }));
 }

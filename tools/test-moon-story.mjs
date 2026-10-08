@@ -3,18 +3,19 @@ import test from 'node:test';
 import fs from 'node:fs';
 import { moonState } from '../src/lib/moon-journey.ts';
 
-test('moon rises, traverses and sets through the complete page', () => {
-  assert.equal(moonState(0).phase, 'rising');
-  assert.ok(moonState(.32).y < moonState(0).y);
-  assert.equal(moonState(.45).phase, 'traversing');
-  assert.ok(moonState(.58).x > moonState(.32).x);
-  assert.equal(moonState(.8).phase, 'descending');
+test('moon starts high and only sets on forward scroll', () => {
+  assert.equal(moonState(0).phase, 'high');
+  for (const mobile of [false, true]) {
+    for (let i = 1; i <= 10000; i++) assert.ok(moonState(i / 10000, mobile).y >= moonState((i - 1) / 10000, mobile).y);
+  }
+  assert.equal(moonState(.45).phase, 'descending');
+  assert.equal(moonState(.8).phase, 'horizon');
   assert.equal(moonState(1).phase, 'setting');
   assert.ok(moonState(1).y > .85);
   assert.equal(moonState(1).setting, 1);
 });
 test('keyframe joins are continuous, including reverse scrolling', () => {
-  for (const p of [.16, .32, .58, .78, .92]) {
+  for (const p of [.25, .5, .75]) {
     const a = moonState(p - 1e-6), b = moonState(p + 1e-6);
     for (const key of ['x', 'y', 'scale', 'light', 'stars', 'setting']) assert.ok(Math.abs(a[key] - b[key]) < .0001, `${p} ${key}`);
   }

@@ -4,14 +4,32 @@ export type ArchiveProject = {
   limitations: string; improvements: string; image?: string; imageAlt?: string;
   additionalImage?: string; additionalImageAlt?: string;
   imageSize?: [number, number]; additionalImageSize?: [number, number];
-  visual: 'graph' | 'memory' | 'threads' | 'signals' | 'image';
+  visual: 'graph' | 'memory' | 'threads' | 'signals' | 'image' | 'network';
 };
 
 export const archiveProjects: ArchiveProject[] = [
   {
+    slug:'waf-request-filtering', title:'Two request guards at the web boundary', course:'Eduvos ITDTA4', year:'2026', tags:['ModSecurity configuration','WAF','Request validation'], visual:'network',
+    summary:'A recovered demonstration configuration defines SQL-pattern and TRACE-method guards before the Core Rule Set.',
+    contribution:'Two rules were found in the retained ITDTA4 project folder. The file alone does not establish personal source authorship. This page documents the inspected configuration and a new explanatory diagram.',
+    approach:'One phase1 rule rejects TRACE. A second phase2 rule examines arguments, argument names, headers and URI for a case-insensitive set of SQL-like markers; both use deny,status:403,log.',
+    results:['One 412-byte configuration file with two explicit rules was recovered.','The original rule IDs and phases establish the narrow request-filtering flow shown above.'],
+    limitations:'No Docker Compose, Flask/auth services, PostgreSQL schema, TLS setup, container-hardening configuration or original end-to-end test evidence was found. No complete secure stack or runtime WAF test is claimed. Pattern matching alone is not robust SQL-injection prevention.',
+    improvements:'Recover the full lab source and permission evidence, validate rules in a disposable local WAF and retain false-positive/regression tests. Enforce parameterised database queries independently of request filtering.',
+  },
+  {
+    slug:'microservices-architecture-study', title:'Designing boundaries between services', course:'Eduvos ITSMA4', year:'2026', tags:['Architecture study','Service contracts','API gateways','Data ownership'], visual:'network',
+    summary:'A named 27-page architecture report evaluates microservices migration, service boundaries and operational trade-offs across three coursework scenarios.',
+    contribution:'Azhar’s named submitted report discusses NexaFlow, UrbanHarvest and TransGlobe academic scenarios. This is analytical design work, not a recovered service implementation.',
+    approach:'Separate business responsibilities and data ownership, compare synchronous APIs with asynchronous messaging, and analyse CI/CD, fault isolation and observability. The report also discusses situations where a monolith is the simpler choice.',
+    results:['A complete named report and its diagram-generation source were recovered.','The new portfolio diagram explains the proposed gateway, business services, independent stores and messaging boundaries.'],
+    limitations:'No running services, deployment manifests or measured reliability/performance results accompany the report. Its case-study companies are academic scenarios, not employment clients.',
+    improvements:'Implement one bounded synthetic scenario, define contracts and failure cases, then measure the operational trade-offs rather than assuming microservices are an improvement.',
+  },
+  {
     slug:'record-lookup',title:'Two ways to find a record',course:'UCT CSC2001',year:'2022',tags:['Java','Linear search','Binary search tree'],visual:'image',
     summary:'Coursework record lookup by country/date using an array scan and a supplied binary-search-tree framework.',
-    contribution:'Recovered application sources in the user’s coursework, with a separately attributed Hussein Suleman tree framework. The framework is not claimed as Azhar’s own invention; exact application commit allocation is not reconstructed.',
+    contribution:'Application sources retained in the coursework archive, with a separately attributed Hussein Suleman tree framework. Framework authorship and individual application commit allocation are not conflated.',
     approach:'Parse CSV fields into Vaccine records. compareTo orders concatenated country/date keys; the array scans inserted entries and the BST follows left/right comparisons. The interface accepts a date and multiple country queries.',
     results:['Both Java lookup structures were recovered in source. New synthetic checks validate found and missing keys in a private cleaned copy.','The browser illustration uses three invented keys/counts and shows comparisons, not original public-health data.'],
     limitations:'The original application hardcodes a relative CSV location and bounds the array. One earlier copy scans unfilled slots; the intact later copy uses records and returns null for absent keys. Tree shape depends on insertion order.',
@@ -30,7 +48,7 @@ export const archiveProjects: ArchiveProject[] = [
     slug:'fourier-reconstruction',title:'A signal, harmonic by harmonic',course:'UCT EEE2047S',year:'2021',tags:['Python','SymPy','NumPy','Fourier series'],visual:'signals',
     summary:'Completed symbolic/numerical Fourier tasks, with a new interactive reconstruction derived from the submitted period-eight pulse.',
     contribution:'Azhar’s named Lab2 submission contains completed coefficient calculations and spectrum plots. Provided worksheet demonstrations remain attributed; the browser visualisation is new portfolio documentation.',
-    approach:'Integrate the period-eight pulse x(t)=1 for0≤t<4 to obtain complex Fourier coefficients. The real reconstruction has DC1/2 and odd sine terms2/(kπ) sin(kπt/4). The submitted tasks also analyse triangular and ramp-like signals.',
+    approach:'Integrate the period-eight pulse x(t) = 1 for 0 ≤ t < 4 to obtain complex Fourier coefficients. The real reconstruction has a DC term of 1/2 and odd sine terms 2/(kπ) sin(kπt/4). The submitted tasks also analyse triangular and ramp-like signals.',
     results:['Named submission retains actual spectral plots and completed SymPy integration.','The new finite-sum visual shows how harmonic count changes edge sharpness and ringing. It is a mathematical explanation, not an original lab screenshot.'],
     limitations:'No new physical signal measurement. The finite sum does not remove discontinuity ringing; worksheet and personally completed task outputs must not be conflated.',
     improvements:'Add numerical coefficient checks, convergence/error plots away from discontinuities and explicit phase-convention tests.',
@@ -104,8 +122,8 @@ export const archiveProjects: ArchiveProject[] = [
     contribution: 'OS1Assignment.java names Azhar Abdool. The assignment supplies the page-table mapping and small test fixture.',
     approach: 'Decode little-endian input into a long, compute page = address >> 7 and offset = address & 0x7F, look up frame [2,4,1,7,3,5,6], then emit (frame << 7) + offset.',
     results: ['Source compiled and translated the fixture to 0x144, 0x1a4, 0xe8, 0x28c, 0x25c, 0x1b4, 0x218 and 0x250.'],
-    limitations: 'No page replacement, TLB or page faults are implemented. The submitted code does not validate out-of-range pages or truncated eight-byte records.',
-    improvements: 'Add range checks, exact record reads and boundary tests; keep the exercise distinct from a complete memory-management system.',
+    limitations: 'No page replacement, TLB or page faults are implemented. The original submission omitted out-of-range and truncated-record validation; the bounded cleaned copy now adds those checks as explicit portfolio improvements.',
+    improvements: 'Retain the new range, exact-record and boundary checks. Add broader property tests while keeping this fixed-table exercise distinct from a complete memory-management system.',
   },
   {
     slug: 'frequency-response', title: 'Signals through a filter', course: 'UCT EEE2047S', year: '2021', tags: ['Python', 'NumPy', 'SymPy', 'Fourier series', 'Frequency response'], visual: 'signals',

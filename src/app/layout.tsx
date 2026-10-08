@@ -11,6 +11,7 @@ import './mobile-city.css';
 import './launch-polish.css';
 import './engineering-experience.css';
 import './moon-story.css';
+import './final-polish.css';
 
 export const metadata: Metadata = {
   metadataBase: siteOrigin,

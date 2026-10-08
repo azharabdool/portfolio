@@ -12,6 +12,7 @@ import { pageMetadata, caseStudySchema, personId } from '@/lib/seo';
 import { MLExperiments, DataMiningCase } from '@/components/ml-experiments';
 import { FourRoomsReplay } from '@/components/four-rooms-replay';
 import { EmbeddedLab, SchedulingLab } from '@/components/systems-lab';
+import { CourseContext } from '@/components/course-context';
 
 export function generateStaticParams() { return projects.map(({ slug }) => ({ slug })); }
 export const dynamicParams = false;
@@ -19,7 +20,7 @@ export const dynamicParams = false;
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find((item) => item.slug === slug);
-  return pageMetadata(project?.title ?? 'Project', `${project?.description ?? 'Engineering case study'} Azhar Abdool’s source-supported ${project?.context ?? 'portfolio'} case study.`, `/projects/${slug}/`);
+  return pageMetadata(project?.title ?? 'Project', `${project?.description ?? 'Engineering case study'} ${project?.context ?? 'Portfolio'} technical case study in Azhar Abdool’s engineering portfolio.`, `/projects/${slug}/`);
 }
 
 export default async function ProjectDetail({ params }: { params: Promise<{ slug: string }> }) {
@@ -34,6 +35,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
     <Link href="/#projects" className="back-link"><ArrowLeft size={16} /> All projects</Link>
     <div className="detail-heading"><p className="eyebrow">{project.category.toUpperCase()} <span>/</span> {project.context} <span>/</span> {project.year}</p><h1>{project.title}</h1><p className="lead">{project.description}</p><div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div>
     <ProjectArt project={project} large />
+    <CourseContext label={project.context} year={project.year}/>
     <div className="detail-body">
       <aside className="detail-sidebar"><p className="eyebrow">PROJECT CONTEXT</p><p>{project.attribution}</p><a href={`/project-notes/${project.slug}.md`} download className="button button-quiet"><FileText size={17} /> Project notes</a>{project.repository ? <a href={project.repository} target="_blank" rel="noopener noreferrer" className="button button-quiet"><Github size={17} /> Source repository<ArrowUpRight size={14} /></a> : <p className="publication-note">{['uct-tutor-marketplace-app','stm32-signal-generation','networking-p2p-chat-prototype'].includes(slug) ? 'Collaborative source held privately.' : 'Repository publication under review this week.'}</p>}</aside>
       <div className="detail-copy">
@@ -42,6 +44,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
         <section><h2>My contribution</h2><p>{depth.contribution}</p></section>
         <section><h2>How it works</h2><p>{project.approach}</p><ol className="pipeline">{project.pipeline.map((step, index) => <li key={step}><span>{String(index + 1).padStart(2, '0')}</span>{step}</li>)}</ol></section>
         <section><h2>Technical implementation</h2><ul>{depth.implementation.map(item=><li key={item}>{item}</li>)}</ul></section>
+        {slug === 'foundry-ai-infographic-dashboard' && <section><h2>Related applied FDE work</h2><p>Retained planning demonstration notes describe fill-rate and variance views, production adjustments and weekly reporting. Those notes support the intended workflow, not independently verified platform execution.</p><Link href='/projects/foundry-supply-demand-planning/' className='back-link'>Explore the planning workflow study <ArrowRight size={16}/></Link><Link href='/credentials/' className='back-link'>View the original Foundry training documents <ArrowRight size={16}/></Link></section>}
         {slug==='machine-learning-mnist-classifier'&&<section><h2>Controlled enhancement experiments</h2><MLExperiments/></section>}
         {slug==='student-performance-data-mining'&&<section><h2>Analytical case study</h2><DataMiningCase/></section>}
         {slug==='reinforcement-learning-four-rooms'&&<section><h2>Inside the agent’s path</h2><FourRoomsReplay/></section>}

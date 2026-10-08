@@ -4,12 +4,12 @@ This is a presentation enhancement to the existing engineering portfolio, not a 
 
 ## Scene And Scroll
 
-`MoonJourney` mounts once on the homepage. One textured moon rises, traverses, descends and sets behind the skyline. Global progress is the current page scroll divided by its scrollable height; smoothstep interpolation joins the art-directed stops in `src/lib/moon-journey.ts`.
+`MoonJourney` mounts once on the homepage. One natural textured moon starts high and only sets during forward scrolling. Global progress is current page scroll divided by its scrollable height; monotonic smoothstep interpolation joins the art-directed stops in `src/lib/moon-journey.ts`.
 
-- Rising: progress0-.32.
-- High traversal: .32-.58.
-- Descent: .58-.92.
-- Setting: .92-1.
+- High starting position:progress0.
+- Gradual descent:progress0-.65.
+- Horizon approach:.65-.9.
+- Setting behind the city at Contact:.9-1.
 
 Transforms, opacity, star intensity, cloud drift, a restrained night tint and a lightweight reflection respond to this progress. Altitude is bounded away from the navigation. Mobile uses a shorter horizontal path and a stable small-viewport scene.
 
@@ -17,7 +17,7 @@ The original generated `night-city.webp` supplies all raster imagery. CSS crops 
 
 ## Content And Access
 
-The decorative scene is `aria-hidden` and pointer-transparent. All headings, career evidence, project links, education and contact remain semantic HTML in normal flow. Six featured projects and four Lab teasers introduce the deeper29-route collection; no case studies were removed.
+The decorative scene is `aria-hidden` and pointer-transparent. All headings, career evidence, project links, education and contact remain semantic HTML in normal flow. Six featured projects and four engineering spotlights introduce the deeper32-route collection; no case studies were removed.
 
 `prefers-reduced-motion` fixes the moon in an attractive position and disables major movement. RL replay retains manual steps. Native cursors, focus indicators, menu/Escape behavior and links remain intact.
 
@@ -33,6 +33,6 @@ UCT context is maintained in `src/data/education.ts`. The restrained Africa rank
 
 Use Node24 and run `npm test`, typecheck, lint, build and link checks. Tests cover trajectory phases, continuity, clamping, mobile bounds, real accuracy/count consistency, valid recorded RL steps, and the existing scheduling/ADC contracts.
 
-For local moon inspection only, `http://localhost:3000/?motion=full` exercises scroll transforms even when the QA browser prefers reduced motion. This override is restricted to localhost and ignored on the public site. It does not override other CSS media preferences; motion tests and native reduced-motion checks must be reported separately.
+The default respects the actual system/browser reduced-motion preference. A small labelled play/pause control lets a visitor explicitly enable or pause moon movement without changing system settings. This controls the moon only; other reduced-motion safeguards remain. There is no query-string override. Test native static fallback and explicit motion separately.
 
 The controller batches scroll work into requestAnimationFrame, caches page geometry with ResizeObserver, skips hidden documents, and cleans up on navigation. There is no continuously running scene loop, WebGL, external telemetry or claimed field Web Vitals pass.
