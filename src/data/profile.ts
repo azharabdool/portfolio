@@ -38,6 +38,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: 'foundry-ai-infographic-dashboard', title: 'From business data to visual intelligence', category: 'Data / FDE', year: '2026', context: 'Foundry project', visual: 'foundry', featured: true,
+    repository: 'https://github.com/azharabdool/foundry-ai-infographic-dashboard',
     image: '/images/foundry-dashboard.webp', imageAlt: 'Original Foundry streaming KPI dashboard with charts and quality indicators',
     description: 'An enterprise KPI dashboard with a conversational infographic workflow and generation history.',
     tags: ['Foundry', 'Ontology', 'AIP Logic', 'Gemini'],
