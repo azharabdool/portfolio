@@ -13,6 +13,6 @@ export function useDemoClock(running: boolean, interval: number, tick: ()=>void)
     const visibility=()=>setForeground(!document.hidden);document.addEventListener('visibilitychange',visibility);
     return()=>{observer.disconnect();document.removeEventListener('visibilitychange',visibility);};
   },[node]);
-  useEffect(()=>{if(!running||!visible||!foreground||reduced)return;const timer=setInterval(()=>callback.current(),interval);return()=>clearInterval(timer);},[running,interval,visible,foreground,reduced]);
-  return {ref,reduced,active:running&&visible&&foreground&&!reduced};
+  useEffect(()=>{if(!running||!visible||!foreground)return;const timer=setInterval(()=>callback.current(),interval);return()=>clearInterval(timer);},[running,interval,visible,foreground]);
+  return {ref,reduced,active:running&&visible&&foreground};
 }

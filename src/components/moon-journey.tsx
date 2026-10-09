@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { Pause, Play } from 'lucide-react';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import { moonState } from '@/lib/moon-journey';
+import { cinematicState, moonState } from '@/lib/moon-journey';
 import { CityLighting } from './city-lighting';
 
 function subscribeMotion(callback: () => void) {
@@ -21,12 +21,20 @@ export function MoonJourney() {
   useEffect(() => {
     const node = scene.current;
     if (!node) return;
-    let frame = 0, total = 1, width = innerWidth, height = innerHeight;
+    const stage = node.parentElement!;
+    const zone = node.closest<HTMLElement>('.cinematic-zone');
+    if (!zone) return;
+    let frame = 0, top = 0, zoneHeight = 1, inset = 0, width = innerWidth, height = innerHeight, sceneHeight = innerHeight;
     const paint = () => {
       frame = 0;
-      node.dataset.active = !document.hidden && enabled ? 'true' : 'false';
       if (document.hidden) return;
-      const p = enabled ? Math.min(1, Math.max(0, scrollY / total)) : lastProgress.current;
+      const boundary = cinematicState(scrollY, top, zoneHeight, sceneHeight);
+      stage.style.setProperty('--scene-light', boundary.sceneOpacity.toFixed(3));
+      stage.dataset.visible = String(boundary.visible);
+      zone.dataset.sceneVisible = String(boundary.visible);
+      node.style.setProperty('--city-light', boundary.cityOpacity.toFixed(3));
+      node.dataset.active = boundary.visible && enabled ? 'true' : 'false';
+      const p = enabled ? boundary.progress : lastProgress.current;
       if (enabled) lastProgress.current = p;
       const state = moonState(p, width <= 640);
       const moonWidth = width <= 640 ? 190 : Math.max(200, Math.min(310, width * .2));
@@ -35,7 +43,7 @@ export function MoonJourney() {
       node.dataset.phase = enabled ? state.phase : 'static';
       node.dataset.motion = enabled ? 'scroll' : 'reduced';
       node.style.setProperty('--moon-x', `${state.x * 100}vw`);
-      node.style.setProperty('--moon-y', `${altitude}px`);
+      node.style.setProperty('--moon-y', `${altitude - inset}px`);
       node.style.setProperty('--moon-scale', state.scale.toFixed(3));
       node.style.setProperty('--moon-light', state.light.toFixed(3));
       node.style.setProperty('--star-light', state.stars.toFixed(3));
@@ -45,27 +53,32 @@ export function MoonJourney() {
     };
     const update = () => { if (!frame && !document.hidden) frame = requestAnimationFrame(paint); };
     const measure = () => {
-      // The fixed scene uses svh, so mobile browser chrome cannot shift its geometry.
-      height = node.clientHeight;
+      // Progress belongs to the clipped opening scene, never the full document.
+      inset = document.querySelector<HTMLElement>('.site-header')?.offsetHeight ?? 0;
+      zone.style.setProperty('--scene-top', `${inset}px`);
+      sceneHeight = node.clientHeight;
+      height = sceneHeight + inset;
       width = node.clientWidth;
-      total = Math.max(1, document.documentElement.scrollHeight - height);
+      top = zone.getBoundingClientRect().top + scrollY - inset;
+      zoneHeight = zone.offsetHeight;
       update();
     };
-    const onScroll = () => { if (enabled) update(); };
+    const onScroll = () => update();
+    const visibility = () => { if (document.hidden) node.dataset.active = 'false'; else update(); };
     const observer = new ResizeObserver(measure);
-    observer.observe(node.parentElement!);
+    observer.observe(zone);
     measure();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', measure, { passive: true });
     window.addEventListener('pageshow', measure);
-    document.addEventListener('visibilitychange', update);
+    document.addEventListener('visibilitychange', visibility);
     return () => {
       observer.disconnect(); cancelAnimationFrame(frame);
       window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', measure);
-      window.removeEventListener('pageshow', measure); document.removeEventListener('visibilitychange', update);
+      window.removeEventListener('pageshow', measure); document.removeEventListener('visibilitychange', visibility);
     };
   }, [enabled]);
-  return <><div ref={scene} className='moon-journey' aria-hidden='true' data-phase='high'>
+  return <><div className='cinematic-backdrop'><div className='moon-stage'><div ref={scene} className='moon-journey' aria-hidden='true' data-phase='high'>
     <div className='journey-sky' />
     <div className='journey-stars'>{Array.from({ length: 32 }, (_, i) => <i key={i} style={{ left: `${3 + (i * 37) % 94}%`, top: `${4 + (i * 17) % 59}%`, opacity: .3 + (i % 4) * .15 }} />)}</div>
     <div className='journey-moon'><div className='moon-disc' /></div>
@@ -74,5 +87,5 @@ export function MoonJourney() {
     <div className='journey-horizon'><Image src='/images/night-city.webp' alt='' fill priority sizes='100vw' /><CityLighting/></div>
     <div className='journey-reflection' />
     <div className='journey-foreground' />
-  </div><button type='button' className='motion-toggle' aria-label={enabled ? 'Pause moon motion' : 'Enable moon motion'} title={enabled ? 'Pause moon motion' : 'Enable moon motion'} aria-pressed={enabled} onClick={() => setPreference(!enabled)}>{enabled ? <Pause size={16} /> : <Play size={16} />}</button></>;
+  </div></div></div><button type='button' className='motion-toggle' aria-label={enabled ? 'Pause moon motion' : 'Enable moon motion'} title={enabled ? 'Pause moon motion' : 'Enable moon motion'} aria-pressed={enabled} onClick={() => setPreference(!enabled)}>{enabled ? <Pause size={16} /> : <Play size={16} />}</button></>;
 }

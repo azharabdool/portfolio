@@ -1,4 +1,12 @@
 export type MoonState = { x: number; y: number; scale: number; light: number; stars: number; setting: number; phase: string };
+export function cinematicState(scroll: number, top: number, height: number, viewport: number) {
+  const progress = Math.max(0, Math.min(1, (scroll - top) / Math.max(1, height - viewport)));
+  const fade = (start: number, end: number) => {
+    const t = Math.max(0, Math.min(1, (progress - start) / (end - start)));
+    return 1 - t * t * (3 - 2 * t);
+  };
+  return { progress, cityOpacity: fade(.35, .8), sceneOpacity: fade(.88, 1), visible: progress < 1 };
+}
 const stops = [
   { progress: 0, x: .82, y: .30, scale: 1, light: .96, stars: .62 },
   { progress: .25, x: .81, y: .43, scale: .98, light: .93, stars: .60 },

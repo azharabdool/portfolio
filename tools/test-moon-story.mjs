@@ -1,7 +1,20 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import fs from 'node:fs';
-import { moonState } from '../src/lib/moon-journey.ts';
+import { cinematicState, moonState } from '../src/lib/moon-journey.ts';
+
+test('cinematic bounds end before content, independently of total page length', () => {
+  for (const [height,viewport] of [[1450,1080],[1380,900],[1320,768],[1500,844],[1460,800]]) {
+    const top=80,range=height-viewport;
+    assert.equal(cinematicState(0,top,height,viewport).progress,0);
+    assert.equal(cinematicState(top+range*.5,top,height,viewport).progress,.5);
+    assert.equal(cinematicState(top+range*.8,top,height,viewport).cityOpacity,0);
+    assert.deepEqual(cinematicState(top+range,top,height,viewport),{progress:1,cityOpacity:0,sceneOpacity:0,visible:false});
+    assert.equal(cinematicState(top+height+5000,top,height,viewport).visible,false);
+    let previous=1;
+    for(let i=0;i<=100;i++){const state=cinematicState(top+range*i/100,top,height,viewport);assert.ok(state.cityOpacity<=previous+.000001);previous=state.cityOpacity;}
+  }
+});
 
 test('moon starts high and only sets on forward scroll', () => {
   assert.equal(moonState(0).phase, 'high');

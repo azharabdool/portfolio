@@ -56,7 +56,9 @@ test('exact inventory: 10 major, 17 studies, 10 distinct demo views; collections
   for(const d of demos)assert.ok(studies.has(d.study));
   const collectionSlugs=studyCollections.flatMap(c=>c.slugs);assert.equal(new Set(collectionSlugs).size,17);assert.deepEqual([...collectionSlugs].sort(),archiveProjects.map(p=>p.slug).sort());
 });
-test('simulations load only after opening; motion hook guards viewport, visibility and reduced motion',()=>{
+test('simulations load only after opening; reduced motion never disables requested playback',()=>{
   const stage=fs.readFileSync(new URL('../src/components/demo-stage.tsx',import.meta.url),'utf8');assert.ok(stage.includes("useState(false)"));assert.ok(stage.includes('ssr:false'));assert.ok(stage.includes('!open?'));
-  const clock=fs.readFileSync(new URL('../src/components/demos/use-demo-clock.ts',import.meta.url),'utf8');assert.ok(clock.includes('!visible||!foreground||reduced'));assert.ok(clock.includes('clearInterval(timer)'));
+  const clock=fs.readFileSync(new URL('../src/components/demos/use-demo-clock.ts',import.meta.url),'utf8');assert.ok(clock.includes('!visible||!foreground'));assert.ok(!clock.includes('||reduced'));assert.ok(clock.includes('clearInterval(timer)'));
+  const controls=fs.readFileSync(new URL('../src/components/demos/controls.tsx',import.meta.url),'utf8');assert.ok(controls.includes('disabled={done}'));assert.ok(!controls.includes('disabled={reduced'));
+  assert.ok(stage.includes('Launch demo'));assert.ok(stage.includes('DemoBoundary'));assert.ok(stage.includes('aria-expanded={open}'));
 });

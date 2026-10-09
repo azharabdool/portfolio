@@ -27,7 +27,8 @@
 .provenance-badge { display:inline-block; padding:7px 10px; border:1px solid #70546b; color:#e5b8cc; font:10px 'Courier New',monospace; }
 .original-badge { border-color:#557b81; color:#bde1df; }
 .demo-stage { margin:25px 0 55px; border-block:1px solid #517185; padding:20px 0 30px; }
-.demo-stage-heading { display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; }
+.demo-stage-heading { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:22px; }
+.demo-load-state { min-height:140px; display:grid; align-content:center; justify-items:start; gap:20px; }
 .demo-ready { min-height:220px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:25px; background:linear-gradient(115deg,#102735,#0c1724); }
 .demo-instrument { border:1px solid #38566a; border-radius:4px; padding:28px; background:#0a1721; min-width:0; }
 .demo-instrument h2 { font-size:24px; line-height:1.4; margin:10px 0; }
