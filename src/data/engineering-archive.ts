@@ -10,7 +10,7 @@ export type ArchiveProject = {
 export const archiveProjects: ArchiveProject[] = [
   {
     slug:'waf-request-filtering', title:'Two request guards at the web boundary', course:'Eduvos ITDTA4', year:'2026', tags:['ModSecurity configuration','WAF','Request validation'], visual:'network',
-    summary:'A recovered demonstration configuration defines SQL-pattern and TRACE-method guards before the Core Rule Set.',
+    summary:'Study two web-boundary guards: request-method rejection and SQL-pattern filtering, with clear limits on what a WAF rule can protect.',
     contribution:'Two rules were found in the retained ITDTA4 project folder. The file alone does not establish personal source authorship. This page documents the inspected configuration and a new explanatory diagram.',
     approach:'One phase1 rule rejects TRACE. A second phase2 rule examines arguments, argument names, headers and URI for a case-insensitive set of SQL-like markers; both use deny,status:403,log.',
     results:['One 412-byte configuration file with two explicit rules was recovered.','The original rule IDs and phases establish the narrow request-filtering flow shown above.'],
@@ -19,7 +19,7 @@ export const archiveProjects: ArchiveProject[] = [
   },
   {
     slug:'microservices-architecture-study', title:'Designing boundaries between services', course:'Eduvos ITSMA4', year:'2026', tags:['Architecture study','Service contracts','API gateways','Data ownership'], visual:'network',
-    summary:'A named 27-page architecture report evaluates microservices migration, service boundaries and operational trade-offs across three coursework scenarios.',
+    summary:'Evaluate service boundaries, data ownership and distributed-system trade-offs in a named architecture report spanning three academic scenarios.',
     contribution:'Azhar’s named submitted report discusses NexaFlow, UrbanHarvest and TransGlobe academic scenarios. This is analytical design work, not a recovered service implementation.',
     approach:'Separate business responsibilities and data ownership, compare synchronous APIs with asynchronous messaging, and analyse CI/CD, fault isolation and observability. The report also discusses situations where a monolith is the simpler choice.',
     results:['A complete named report and its diagram-generation source were recovered.','The new portfolio diagram explains the proposed gateway, business services, independent stores and messaging boundaries.'],
@@ -28,7 +28,7 @@ export const archiveProjects: ArchiveProject[] = [
   },
   {
     slug:'record-lookup',title:'Two ways to find a record',course:'UCT CSC2001',year:'2022',tags:['Java','Linear search','Binary search tree'],visual:'image',
-    summary:'Coursework record lookup by country/date using an array scan and a supplied binary-search-tree framework.',
+    summary:'Compare array scanning and tree-based record lookup to make search cost, insertion order and missing-key behaviour visible.',
     contribution:'Application sources retained in the coursework archive, with a separately attributed Hussein Suleman tree framework. Framework authorship and individual application commit allocation are not conflated.',
     approach:'Parse CSV fields into Vaccine records. compareTo orders concatenated country/date keys; the array scans inserted entries and the BST follows left/right comparisons. The interface accepts a date and multiple country queries.',
     results:['Both Java lookup structures were recovered in source. New synthetic checks validate found and missing keys in a private cleaned copy.','The browser illustration uses three invented keys/counts and shows comparisons, not original public-health data.'],
@@ -37,7 +37,7 @@ export const archiveProjects: ArchiveProject[] = [
   },
   {
     slug:'relational-queries',title:'Questions across relational tables',course:'UCT CSC2001',year:'2022',tags:['SQL','Joins','Aggregates','Data contracts'],visual:'image',
-    summary:'Recovered Classic Models query exercises spanning record selection, counts, prices, inventory joins and updates.',
+    summary:'Turn inventory and pricing questions into relational queries, with a synthetic execution that checks a corrected join.',
     contribution:'Coursework query files recovered from the supplied assignment directory. The Classic Models sample schema/data is external; its ownership is not claimed. The new small demonstration schema and records are explicit portfolio additions.',
     approach:'Join products to productlines through the productLine key, filter inventory and apply aggregates such as counts and maximum buyPrice. A cleaned demo corrects the malformed join-column reference in query13.',
     results:['Original SQL includes a low-stock product/product-line query and a maximum-price calculation.','A new SQLite-compatible synthetic example verifies the corrected join without publishing the supplied database dump.'],
@@ -55,7 +55,7 @@ export const archiveProjects: ArchiveProject[] = [
   },
   {
     slug:'attribute-validation',title:'When three records agree',course:'UCT CSC2004Z practical',year:'2022',tags:['Java','File parsing','Validation','Boundary cases'],visual:'image',
-    summary:'A named practical archive contains a small Java validator for triples of comma-separated card attributes.',
+    summary:'Use a small Java attribute validator to explore parsing, predicate composition and the counterexamples that reveal a rule gap.',
     contribution:'The named submission ZIP contains Check.java; the inspected working source says “own attempt”. This is a small practical, not a full game, AI engine or production application.',
     approach:'Read three space-separated records, split attributes and compare equality/distinctness. The retained implementation accepts all-identical records or all-different attributes.',
     results:['A previously unlisted named archive and source were recovered without executing its compiled classes.','Inspection identifies a correctness gap: mixed same/different attribute combinations are not handled independently.'],

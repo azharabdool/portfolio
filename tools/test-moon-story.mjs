@@ -1,7 +1,37 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import fs from 'node:fs';
-import { journeyProgress, moonState } from '../src/lib/moon-journey.ts';
+import { journeyProgress, moonState, settleJourney } from '../src/lib/moon-journey.ts';
+
+test('moon damping is frame-rate independent and never overshoots', () => {
+  const simulate = (hz) => {
+    let p = 0;
+    for (let frame=0; frame<hz; frame++) p=settleJourney(p,1,1000/hz);
+    return p;
+  };
+  assert.ok(Math.abs(simulate(60)-simulate(120))<1e-9);
+  for (const target of [0,.3,1]) {
+    let p=.7;
+    for (let frame=0;frame<300;frame++) {
+      const next=settleJourney(p,target,16);
+      assert.ok(next>=Math.min(p,target)&&next<=Math.max(p,target));
+      p=next;
+    }
+    assert.equal(p,target);
+  }
+  assert.equal(settleJourney(.2,.8,0),.2);
+  assert.equal(settleJourney(.2,.8,NaN),.2);
+  assert.equal(settleJourney(.2,.8,10000),settleJourney(.2,.8,64));
+  assert.equal(settleJourney(NaN,NaN,16),0);
+  assert.equal(journeyProgress(10,NaN,100),1);
+});
+
+test('moon moves through keyframe joins without a stop-start plateau', () => {
+  for (const p of [.25,.5,.75]) {
+    assert.ok(moonState(p).y-moonState(p-.001).y>.0002);
+    assert.ok(moonState(p+.001).y-moonState(p).y>.0002);
+  }
+});
 
 test('moon journey spans the full page instead of ending at featured work', () => {
   for (const [height,viewport] of [[8500,1080],[9200,900],[9500,768],[22000,844],[23000,800]]) {

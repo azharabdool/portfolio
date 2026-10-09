@@ -4,7 +4,7 @@ This is a presentation enhancement to the existing engineering portfolio, not a 
 
 ## Scene And Scroll
 
-`MoonJourney` mounts once inside `.homepage-world`. Its fixed viewport-height backdrop remains behind all homepage sections, with translucent dark surfaces preserving both the city and text readability. Progress uses the complete document height minus the viewport; monotonic smoothstep interpolation joins the art-directed stops in `src/lib/moon-journey.ts`.
+`MoonJourney` mounts once inside `.homepage-world`. Its fixed viewport-height backdrop remains behind all homepage sections, with translucent dark surfaces preserving both the city and text readability. Progress uses the complete document height minus the viewport. Linear art-directed stops avoid quarter-journey plateaus; frame-rate-independent exponential damping smooths the actual movement in `src/lib/moon-journey.ts`.
 
 - High starting position:progress0.
 - Gradual descent:progress0-.65.
@@ -37,4 +37,4 @@ Use Node24 and run `npm test`, typecheck, lint, build and link checks. Tests cov
 
 The default respects the actual system/browser reduced-motion preference. A small labelled play/pause control lets a visitor explicitly enable or pause moon movement without changing system settings. This controls the moon only; other reduced-motion safeguards remain. There is no query-string override. Test native static fallback and explicit motion separately.
 
-The controller batches scroll work into requestAnimationFrame, caches document geometry with ResizeObserver, skips hidden documents, and cleans up on navigation. There is no continuously running scene loop, WebGL, external telemetry or claimed field Web Vitals pass.
+The controller batches scroll work into requestAnimationFrame, caches document geometry with ResizeObserver, suppresses unchanged CSS writes, skips hidden documents, and cleans up on navigation. A short settling loop runs only until progress meets the latest scroll target; it then stops completely. Pause freezes the current pose and resume catches up smoothly rather than jumping. Long frame delays are bounded. There is no continuously running JavaScript scene loop, WebGL, external telemetry or claimed field Web Vitals pass.

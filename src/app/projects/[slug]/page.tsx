@@ -14,6 +14,8 @@ import { FourRoomsReplay } from '@/components/four-rooms-replay';
 import { EmbeddedLab, SchedulingLab } from '@/components/systems-lab';
 import { CourseContext } from '@/components/course-context';
 import { DemoLink } from '@/components/demo-link';
+import { StudyWorkbench } from '@/components/study-workbench';
+import { projectInsights } from '@/data/project-insights';
 
 export function generateStaticParams() { return projects.map(({ slug }) => ({ slug })); }
 export const dynamicParams = false;
@@ -38,6 +40,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
     <ProjectArt project={project} large />
     <CourseContext label={project.context} year={project.year}/>
     <DemoLink study={`/projects/${slug}/`}/>
+    <StudyWorkbench insight={projectInsights[slug]}/>
     <div className="detail-body">
       <aside className="detail-sidebar"><p className="eyebrow">PROJECT CONTEXT</p><p>{project.attribution}</p><a href={`/project-notes/${project.slug}.md`} download className="button button-quiet"><FileText size={17} /> Project notes</a>{project.repository ? <a href={project.repository} target="_blank" rel="noopener noreferrer" className="button button-quiet"><Github size={17} /> {slug==='stm32-signal-generation'?'Documentation repository':'Source repository'}<ArrowUpRight size={14} /></a> : <p className="publication-note">{['uct-tutor-marketplace-app','stm32-signal-generation','networking-p2p-chat-prototype'].includes(slug) ? 'Collaborative source held privately.' : 'Repository publication under review this week.'}</p>}{slug==='stm32-signal-generation'&&project.repository&&<p className="publication-note">Documentation and source-derived plot only. Collaborative firmware remains private.</p>}</aside>
       <div className="detail-copy">
