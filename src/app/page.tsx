@@ -17,12 +17,10 @@ function SectionLabel({ number, children }: { number: string; children: React.Re
 
 export default function Home() {
   return <div className='homepage-world'>
-    <div className='cinematic-zone'>
     <MoonJourney />
     <Hero />
     <div className="discipline-band"><div className="container"><span>INTELLIGENT SYSTEMS</span><i /><span>ENTERPRISE SOFTWARE</span><i /><span>COMPUTER ENGINEERING</span><i /><span>SECURITY & NETWORKS</span></div></div>
     <CityTransition />
-    </div>
     <section className="section projects-section" id="projects" aria-labelledby="projects-title"><div className="container">
       <div className="section-heading"><div><SectionLabel number="01">SELECTED WORK</SectionLabel><h2 id="projects-title">Different disciplines.<br /><span>One engineering foundation.</span></h2></div><p className="heading-note">From learning models to moving signals,<br />a selection of work across the stack.</p></div>
       <div className="featured-grid">{['foundry-ai-infographic-dashboard','machine-learning-mnist-classifier','reinforcement-learning-four-rooms','stm32-signal-generation','uct-tutor-marketplace-app','operating-systems-simulations'].map(slug => <ProjectCard key={slug} project={projects.find(p => p.slug === slug)!}/>)}</div>

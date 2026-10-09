@@ -4,14 +4,14 @@ This is a presentation enhancement to the existing engineering portfolio, not a 
 
 ## Scene And Scroll
 
-`MoonJourney` mounts once inside the clipped `.cinematic-zone`, covering only Hero, discipline band and the network transition. Its viewport-height stage is sticky inside an absolute backdrop bounded by that wrapper, never fixed to the whole page. Progress uses wrapper top/height minus the viewport; monotonic smoothstep interpolation joins the art-directed stops in `src/lib/moon-journey.ts`.
+`MoonJourney` mounts once inside `.homepage-world`. Its fixed viewport-height backdrop remains behind all homepage sections, with translucent dark surfaces preserving both the city and text readability. Progress uses the complete document height minus the viewport; monotonic smoothstep interpolation joins the art-directed stops in `src/lib/moon-journey.ts`.
 
 - High starting position:progress0.
 - Gradual descent:progress0-.65.
 - Horizon approach:.65-.9.
-- Setting and scene termination before Featured Work:.9-1.
+- Low, still-visible moon above the skyline near the bottom of the complete page:.9-1.
 
-The skyline fades between progress.35 and.8; the remaining moon/sky fades between.88 and1. Boundary visibility is independent of the moon pause/reduced-motion setting, so even a paused moon cannot leave a background behind later content. The duplicated sticky bitmap backdrop in the network transition is removed. Featured Work is opaque; all subsequent content is outside the cinematic wrapper.
+The city and sky do not fade out when Featured Work begins. Projects, About, Experience, Skills, Education, Credentials, Contact and the homepage footer let the same scene show through. The moon's final altitude and light keep it visible rather than letting it disappear completely behind the skyline. The duplicated sticky bitmap backdrop in the network transition stays removed. Pausing holds the moon's pose without hiding the city.
 
 Transforms, opacity, star intensity, cloud drift, a restrained night tint and a lightweight reflection respond to this progress. Altitude is bounded away from the navigation. Mobile uses a shorter horizontal path and a stable small-viewport scene.
 
@@ -19,7 +19,7 @@ The original generated `night-city.webp` supplies all raster imagery. CSS crops 
 
 ## Content And Access
 
-The decorative scene is `aria-hidden` and pointer-transparent. Its motion control is a separate, bounded foreground button. All headings, career evidence, project links, education and contact remain semantic HTML in normal flow. Six featured projects and four engineering spotlights introduce the44-route collection; no case studies were removed.
+The decorative scene is `aria-hidden` and pointer-transparent. Its motion control is a separate fixed foreground button. All headings, career evidence, project links, education and contact remain semantic HTML in normal flow. Six featured projects and four engineering spotlights introduce the44-route collection; no case studies were removed.
 
 `prefers-reduced-motion` fixes the moon and disables decorative transitions. Explicitly requested demo playback remains functional, with manual steps and Pause always available. Native cursors, focus indicators, menu/Escape behavior and links remain intact.
 
@@ -37,4 +37,4 @@ Use Node24 and run `npm test`, typecheck, lint, build and link checks. Tests cov
 
 The default respects the actual system/browser reduced-motion preference. A small labelled play/pause control lets a visitor explicitly enable or pause moon movement without changing system settings. This controls the moon only; other reduced-motion safeguards remain. There is no query-string override. Test native static fallback and explicit motion separately.
 
-The controller batches scroll work into requestAnimationFrame, caches wrapper geometry with ResizeObserver, skips hidden documents, and cleans up on navigation. There is no continuously running scene loop, WebGL, external telemetry or claimed field Web Vitals pass.
+The controller batches scroll work into requestAnimationFrame, caches document geometry with ResizeObserver, skips hidden documents, and cleans up on navigation. There is no continuously running scene loop, WebGL, external telemetry or claimed field Web Vitals pass.

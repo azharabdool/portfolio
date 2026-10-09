@@ -1,22 +1,36 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import fs from 'node:fs';
-import { cinematicState, moonState } from '../src/lib/moon-journey.ts';
+import { journeyProgress, moonState } from '../src/lib/moon-journey.ts';
 
-test('cinematic bounds end before content, independently of total page length', () => {
-  for (const [height,viewport] of [[1450,1080],[1380,900],[1320,768],[1500,844],[1460,800]]) {
-    const top=80,range=height-viewport;
-    assert.equal(cinematicState(0,top,height,viewport).progress,0);
-    assert.equal(cinematicState(top+range*.5,top,height,viewport).progress,.5);
-    assert.equal(cinematicState(top+range*.8,top,height,viewport).cityOpacity,0);
-    assert.deepEqual(cinematicState(top+range,top,height,viewport),{progress:1,cityOpacity:0,sceneOpacity:0,visible:false});
-    assert.equal(cinematicState(top+height+5000,top,height,viewport).visible,false);
-    let previous=1;
-    for(let i=0;i<=100;i++){const state=cinematicState(top+range*i/100,top,height,viewport);assert.ok(state.cityOpacity<=previous+.000001);previous=state.cityOpacity;}
+test('moon journey spans the full page instead of ending at featured work', () => {
+  for (const [height,viewport] of [[8500,1080],[9200,900],[9500,768],[22000,844],[23000,800]]) {
+    const range=height-viewport;
+    assert.equal(journeyProgress(0,height,viewport),0);
+    assert.equal(journeyProgress(range*.5,height,viewport),.5);
+    assert.equal(journeyProgress(range,height,viewport),1);
+    assert.ok(journeyProgress(1600,height,viewport)<.25);
+    assert.equal(journeyProgress(-100,height,viewport),0);
+    assert.equal(journeyProgress(height+5000,height,viewport),1);
+    assert.equal(journeyProgress(NaN,height,viewport),0);
+    let previous=0;
+    for(let i=0;i<=100;i++){const progress=journeyProgress(range*i/100,height,viewport);assert.ok(progress>=previous);previous=progress;}
   }
+  assert.equal(journeyProgress(0,500,800),0);
 });
 
-test('moon starts high and only sets on forward scroll', () => {
+test('homepage retains its fixed scene behind translucent content', () => {
+  const css=fs.readFileSync(new URL('../src/app/moon-story.css',import.meta.url),'utf8');
+  const page=fs.readFileSync(new URL('../src/app/page.tsx',import.meta.url),'utf8');
+  const component=fs.readFileSync(new URL('../src/components/moon-journey.tsx',import.meta.url),'utf8');
+  assert.match(css,/\.cinematic-backdrop \{ position:fixed;/);
+  assert.doesNotMatch(css,/\.homepage-world \{[^}]*isolation:isolate/);
+  assert.doesNotMatch(page,/cinematic-zone/);
+  assert.doesNotMatch(component,/sceneOpacity|cityOpacity|sceneVisible/);
+  for(const section of ['projects','about','experience','credentials']) assert.match(css,new RegExp(`\\.homepage-world \\.${section}-section[^}]*background:#[0-9a-f]{8}`));
+});
+
+test('moon starts high and descends without leaving the visible skyline', () => {
   assert.equal(moonState(0).phase, 'high');
   for (const mobile of [false, true]) {
     for (let i = 1; i <= 10000; i++) assert.ok(moonState(i / 10000, mobile).y >= moonState((i - 1) / 10000, mobile).y);
@@ -24,7 +38,9 @@ test('moon starts high and only sets on forward scroll', () => {
   assert.equal(moonState(.45).phase, 'descending');
   assert.equal(moonState(.8).phase, 'horizon');
   assert.equal(moonState(1).phase, 'setting');
-  assert.ok(moonState(1).y > .85);
+  assert.ok(moonState(1).y > .55 && moonState(1).y < .65);
+  assert.ok(moonState(1,true).y > .5 && moonState(1,true).y < .6);
+  assert.ok(moonState(1).light >= .7);
   assert.equal(moonState(1).setting, 1);
 });
 test('keyframe joins are continuous, including reverse scrolling', () => {
