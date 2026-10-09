@@ -2,6 +2,10 @@
 
 Embedded C experiments using timers, DMA, waveform lookup tables and ADC-controlled PWM.
 
+Public release: [documentation-only case study](https://github.com/azharabdool/stm32-signal-generation). Shared/vendor firmware remains private; this repository contains only documentation and a source-derived plot.
+
+Live [interactive signal desk](https://azharabdool.vercel.app/playground/stm32/) is a new portfolio visualisation, not hardware measurement or firmware execution.
+
 ## Overview
 
 Explore timing and peripheral coordination on an STM32F0-based laboratory setup. Practical 4 generates waveforms; Practical 3 samples analogue input and changes PWM behaviour.

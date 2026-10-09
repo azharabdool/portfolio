@@ -87,6 +87,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'stm32-signal-generation', title: 'Signals, timing and the physical world', category: 'Embedded', year: '2023', context: 'UCT · EEE3096S', visual: 'embedded', featured: true,
+    repository: 'https://github.com/azharabdool/stm32-signal-generation',
     description: 'STM32 embedded C work coordinating timers, DMA, waveform lookup tables, ADC and PWM.',
     tags: ['C', 'STM32', 'DMA', 'ADC / PWM'],
     overview: 'Embedded practicals exploring waveform generation and analogue-input control on a microcontroller, with LCD and interrupt interaction.',
