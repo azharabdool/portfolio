@@ -1,0 +1,3 @@
+export function CityLighting() {
+  return <><div className='journey-city-lights'>{[[2,73,1,8],[13,72,1,8],[25,70,1,10],[34,66,1.6,14],[43,74,1,8],[47,65,2,16],[53,72,1,9],[59,65,2,16],[65,69,1.2,13],[69,64,1.6,17],[74,49,2,32],[80,55,1,26],[85,58,1.8,23],[94,65,1,16]].map(([x,y,w,h],i)=><span key={x} className={`tower-light colour-${i%4}`} style={{left:`${x}%`,top:`${y}%`,width:`${w}%`,height:`${h}%`}}><i/><i/><i/></span>)}</div><div className='city-water-lights'>{[34,47,59,74,80,85,94].map((x,i)=><i className={`colour-${i%4}`} key={x} style={{left:`${x}%`}}/>)}</div><div className='city-traffic'><i/><i/></div></>;
+}

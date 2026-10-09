@@ -1,0 +1,9 @@
+'use client';
+import { useState } from 'react';
+import { RotateCcw, Shuffle } from 'lucide-react';
+import { moveTile, shuffledPuzzle, solvedPuzzle } from '@/lib/playground-models';
+export default function ImagePuzzle() {
+  const [board,setBoard]=useState([...solvedPuzzle]),[moves,setMoves]=useState(0);
+  const solved=board.every((v,i)=>v===solvedPuzzle[i]);
+  return <div className='demo-instrument puzzle-demo'><div className='demo-toolbar'><div><p className='eyebrow'>3 × 3 / LEGAL ADJACENT SWAPS</p><h2>Put the city together.</h2></div><div className='demo-controls'><button className='button button-quiet' onClick={()=>{setBoard(shuffledPuzzle());setMoves(0);}}><Shuffle size={17}/>Shuffle</button><button className='icon-button' title='Reset puzzle' aria-label='Reset puzzle' onClick={()=>{setBoard([...solvedPuzzle]);setMoves(0);}}><RotateCcw size={18}/></button></div></div><div className='puzzle-board'>{board.map((tile,index)=><button key={index} aria-label={tile?`Move tile ${tile}`:'Black tile'} disabled={!tile||moveTile(board,index)===board} style={tile?{backgroundImage:"url('/images/night-city.webp')",backgroundSize:'300% 300%',backgroundPosition:`${(tile-1)%3*50}% ${Math.floor((tile-1)/3)*50}%`}:undefined} onClick={()=>{const next=moveTile(board,index);if(next!==board){setBoard(next);setMoves(moves+1);}}}>{tile?<span>{tile}</span>:null}</button>)}</div><p className='demo-status' role='status'>{moves} moves · {solved?'Solved':'In progress'}</p><p className='evidence-caption'>New browser recreation of the inspected TileManager rules: bottom-right black tile, legal up/down/left/right moves. Original C++ generated PGM frames from CLI arguments. This new UI uses the portfolio’s authored city image, not an unknown coursework fixture. Shuffle uses 80 legal swaps.</p></div>;
+}

@@ -12,6 +12,7 @@ import { FourierLab } from '@/components/signal-lab';
 import { LookupLab } from '@/components/lookup-lab';
 import { CourseContext } from '@/components/course-context';
 import { SecurityStudy } from '@/components/security-study';
+import { DemoLink } from '@/components/demo-link';
 
 export const dynamicParams = false;
 export function generateStaticParams() { return archiveProjects.map(({slug})=>({slug})); }
@@ -27,6 +28,7 @@ export default async function ArchiveDetail({params}:{params:Promise<{slug:strin
     <Link className="back-link" href="/lab/"><ArrowLeft size={16}/> Engineering Lab</Link>
     <div className="detail-heading"><p className="eyebrow">{p.course} / {p.year}</p><h1>{p.title}</h1><p className="lead">{p.summary}</p><div className="project-tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div></div>
     <CourseContext label={p.course} year={p.year}/>
+    <DemoLink study={`/engineering/${slug}/`}/>
     {slug === 'waf-request-filtering' && <SecurityStudy mode='waf'/>}
     {slug === 'microservices-architecture-study' && <SecurityStudy mode='services'/>}
     {p.image&&<figure className="archive-output"><Image src={p.image} alt={p.imageAlt!} width={p.imageSize?.[0]??1000} height={p.imageSize?.[1]??600} sizes="(max-width:640px) 100vw, 1000px"/><figcaption>{p.imageAlt}</figcaption></figure>}

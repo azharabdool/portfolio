@@ -1,12 +1,11 @@
 import Link from 'next/link';
-import { ArrowDownToLine, ArrowUpRight, BriefcaseBusiness, FlaskConical, ShieldCheck } from 'lucide-react';
+import { ArrowDownToLine, ArrowUpRight, BriefcaseBusiness, ShieldCheck } from 'lucide-react';
 import { Hero } from '@/components/hero';
 import { ProjectCard } from '@/components/project-card';
-import { ProjectBrowser } from '@/components/project-browser';
+import { InteractiveLabCTA } from '@/components/interactive-lab-cta';
 import { EngineeringSpotlights } from '@/components/engineering-spotlights';
 import { CredentialGrid } from '@/components/credentials';
 import { credentialEvidence } from '@/data/credentials';
-import { archiveProjects } from '@/data/engineering-archive';
 import { CityTransition } from '@/components/city-transition';
 import { MoonJourney } from '@/components/moon-journey';
 import { EducationFeature } from '@/components/education-feature';
@@ -26,8 +25,7 @@ export default function Home() {
       <div className="section-heading"><div><SectionLabel number="01">SELECTED WORK</SectionLabel><h2 id="projects-title">Different disciplines.<br /><span>One engineering foundation.</span></h2></div><p className="heading-note">From learning models to moving signals,<br />a selection of work across the stack.</p></div>
       <div className="featured-grid">{['foundry-ai-infographic-dashboard','machine-learning-mnist-classifier','reinforcement-learning-four-rooms','stm32-signal-generation','uct-tutor-marketplace-app','operating-systems-simulations'].map(slug => <ProjectCard key={slug} project={projects.find(p => p.slug === slug)!}/>)}</div>
       <EngineeringSpotlights/>
-      <Link className='featured-lab-link' href='/lab/' id='engineering-archive'><div className='lab-cta-copy'><FlaskConical size={26} strokeWidth={1.3} /><span><span className='eyebrow'>ENGINEERING LAB / {projects.length + archiveProjects.length} TECHNICAL CASE STUDIES</span><strong>Inside the engineering.</strong><span>Algorithms · embedded · electrical · systems · experiments</span><span className='lab-cta-action'>Enter the Lab <ArrowUpRight size={19}/></span></span></div><svg className='lab-cta-schematic' viewBox='0 0 360 140' aria-hidden='true'><path d='M0 78H45L62 35L83 104L107 57L126 78H175L190 48L211 78H248L265 20L285 117L306 78H360'/><path d='M30 20H135V120H330M135 20H330V120'/>{[30,135,330].map(x => <circle key={x} cx={x} cy='20' r='4'/>)}</svg></Link>
-      <details className='secondary-projects'><summary>More project case studies <span>AI, image processing, networks and planning</span><ArrowUpRight size={18} aria-hidden='true' /></summary><ProjectBrowser /></details>
+      <InteractiveLabCTA/>
     </div></section>
     <section className="section about-section" id="about" aria-labelledby="about-title"><div className="container about-grid">
       <div><SectionLabel number="02">ABOUT</SectionLabel><h2 id="about-title">An engineer across<br /><span>the whole system.</span></h2><div className="about-signature"><span>UCT</span><span>COMPUTER SCIENCE<br />+ COMPUTER ENGINEERING</span></div></div>

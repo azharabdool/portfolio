@@ -13,6 +13,7 @@ import { MLExperiments, DataMiningCase } from '@/components/ml-experiments';
 import { FourRoomsReplay } from '@/components/four-rooms-replay';
 import { EmbeddedLab, SchedulingLab } from '@/components/systems-lab';
 import { CourseContext } from '@/components/course-context';
+import { DemoLink } from '@/components/demo-link';
 
 export function generateStaticParams() { return projects.map(({ slug }) => ({ slug })); }
 export const dynamicParams = false;
@@ -32,10 +33,11 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
   return <article id="home" className="project-detail container">
     <StructuredData data={caseStudySchema(project.title,project.description,`/projects/${slug}/`,project.attribution)}/>
     {slug==='machine-learning-mnist-classifier'&&<StructuredData data={{'@context':'https://schema.org','@type':'SoftwareSourceCode',name:'MNIST feedforward classifier',author:{'@id':personId},programmingLanguage:'Python',codeRepository:project.repository,description:'Individual original PyTorch classifier with clearly labelled portfolio enhancements.'}}/>}
-    <Link href="/#projects" className="back-link"><ArrowLeft size={16} /> All projects</Link>
+    <Link href="/projects/" className="back-link"><ArrowLeft size={16} /> All projects</Link>
     <div className="detail-heading"><p className="eyebrow">{project.category.toUpperCase()} <span>/</span> {project.context} <span>/</span> {project.year}</p><h1>{project.title}</h1><p className="lead">{project.description}</p><div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div></div>
     <ProjectArt project={project} large />
     <CourseContext label={project.context} year={project.year}/>
+    <DemoLink study={`/projects/${slug}/`}/>
     <div className="detail-body">
       <aside className="detail-sidebar"><p className="eyebrow">PROJECT CONTEXT</p><p>{project.attribution}</p><a href={`/project-notes/${project.slug}.md`} download className="button button-quiet"><FileText size={17} /> Project notes</a>{project.repository ? <a href={project.repository} target="_blank" rel="noopener noreferrer" className="button button-quiet"><Github size={17} /> Source repository<ArrowUpRight size={14} /></a> : <p className="publication-note">{['uct-tutor-marketplace-app','stm32-signal-generation','networking-p2p-chat-prototype'].includes(slug) ? 'Collaborative source held privately.' : 'Repository publication under review this week.'}</p>}</aside>
       <div className="detail-copy">

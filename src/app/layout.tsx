@@ -6,12 +6,14 @@ import { siteOrigin } from '@/lib/site-origin';
 import { identityGraph } from '@/lib/seo';
 import { StructuredData } from '@/components/structured-data';
 import { PerformanceProbe } from '@/components/performance-probe';
+import { PointerDepth } from '@/components/pointer-depth';
 import './globals.css';
 import './mobile-city.css';
 import './launch-polish.css';
 import './engineering-experience.css';
 import './moon-story.css';
 import './final-polish.css';
+import './playground.css';
 
 export const metadata: Metadata = {
   metadataBase: siteOrigin,
@@ -29,5 +31,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><StructuredData data={identityGraph}/><PerformanceProbe/><a href="#main-content" className="skip-link">Skip to content</a><Header /><main id="main-content">{children}</main><Footer /></body></html>;
+  return <html lang="en"><body><StructuredData data={identityGraph}/><PerformanceProbe/><PointerDepth/><a href="#main-content" className="skip-link">Skip to content</a><Header /><main id="main-content">{children}</main><Footer /></body></html>;
 }

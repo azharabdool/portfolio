@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Pause, Play } from 'lucide-react';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { moonState } from '@/lib/moon-journey';
+import { CityLighting } from './city-lighting';
 
 function subscribeMotion(callback: () => void) {
   const media = matchMedia('(prefers-reduced-motion: reduce)');
@@ -23,6 +24,7 @@ export function MoonJourney() {
     let frame = 0, total = 1, width = innerWidth, height = innerHeight;
     const paint = () => {
       frame = 0;
+      node.dataset.active = !document.hidden && enabled ? 'true' : 'false';
       if (document.hidden) return;
       const p = enabled ? Math.min(1, Math.max(0, scrollY / total)) : lastProgress.current;
       if (enabled) lastProgress.current = p;
@@ -69,7 +71,7 @@ export function MoonJourney() {
     <div className='journey-moon'><div className='moon-disc' /></div>
     <div className='journey-clouds' />
     <div className='journey-rear' />
-    <div className='journey-horizon'><Image src='/images/night-city.webp' alt='' fill priority sizes='100vw' /><div className='journey-city-lights'>{[[8,74],[26,70],[46,68],[59,67],[68,65],[74,51],[81,69],[85,60]].map(([x,y]) => <i key={x} style={{ left: `${x}%`, top: `${y}%` }} />)}</div></div>
+    <div className='journey-horizon'><Image src='/images/night-city.webp' alt='' fill priority sizes='100vw' /><CityLighting/></div>
     <div className='journey-reflection' />
     <div className='journey-foreground' />
   </div><button type='button' className='motion-toggle' aria-label={enabled ? 'Pause moon motion' : 'Enable moon motion'} title={enabled ? 'Pause moon motion' : 'Enable moon motion'} aria-pressed={enabled} onClick={() => setPreference(!enabled)}>{enabled ? <Pause size={16} /> : <Play size={16} />}</button></>;

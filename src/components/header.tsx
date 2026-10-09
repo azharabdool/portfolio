@@ -7,8 +7,8 @@ import { usePathname } from 'next/navigation';
 import { profile } from '@/data/profile';
 
 const navigation = [
-  { label: 'Projects', id: 'projects' }, { label: 'Lab', id: 'engineering-archive', href: '/lab/' },
-  { label: 'About', id: 'about' }, { label: 'Experience', id: 'experience' }, { label: 'Skills', id: 'skills' },
+  { label: 'Projects', id: 'projects', href: '/projects/' }, { label: 'Lab', id: 'engineering-archive', href: '/lab/' }, {label:'Playground',id:'playground',href:'/playground/'},
+  { label: 'About', id: 'about' }, { label: 'Experience', id: 'experience' },
   { label: 'Education', id: 'education' }, { label: 'Credentials', id: 'certifications', href: '/credentials/' }, { label: 'Contact', id: 'contact' },
 ];
 

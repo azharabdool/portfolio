@@ -1,4 +1,6 @@
-export function LabPreview({kind}:{kind:'graph'|'memory'|'threads'|'signals'|'image'|'network'}) {
+import { DemoPreview } from './demo-preview';
+export function LabPreview({kind,slug}:{kind:'graph'|'memory'|'threads'|'signals'|'image'|'network';slug?:string}) {
+  if(slug==='typing-tutor')return <DemoPreview kind='typing'/>;
   if (kind === 'network') return <svg className='lab-preview lab-preview-network' viewBox='0 0 300 120' aria-hidden='true'><path d='M45 60H255 M150 60V25 M150 60V95'/>{[[20,45],[125,10],[125,80],[230,45]].map(([x,y]) => <rect key={`${x}-${y}`} x={x} y={y} width='50' height='30'/>)}</svg>;
   return <svg className={`lab-preview lab-preview-${kind}`} viewBox="0 0 300 120" aria-hidden="true">
     {kind==='signals'?<><path d="M0 60 H300" className="preview-axis"/><path d={Array.from({length:101},(_,i)=>`${i?'L':'M'}${i*3} ${60-Math.sin(i/8)*35}`).join(' ')}/></>:kind==='graph'?<><path d="M40 70 L110 25 L180 80 L260 30 M40 70 L180 80"/>{[[40,70],[110,25],[180,80],[260,30]].map(([x,y])=><circle key={x} cx={x} cy={y} r="9"/>)}</>:kind==='threads'?<>{[0,1,2].map(i=><g key={i}><path className="preview-axis" d={`M20 ${25+i*35} H280`}/><path className="worker-trace" d={`M${35+i*24} ${25+i*35} h${110-i*15}`}/></g>)}</>:kind==='memory'?<>{[0,1,2,3].map(i=><g key={i}><rect x={20+i*70} y="37" width="45" height="45"/><path d={`M${65+i*70} 60 h25`}/></g>)}</>:<>{Array.from({length:24},(_,i)=><rect key={i} x={40+(i%8)*28} y={20+Math.floor(i/8)*28} width="23" height="23" opacity={i%5===0?.2:.8}/>)}</>}

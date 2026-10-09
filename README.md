@@ -29,14 +29,17 @@ npm run preview
 ```
 
 On this Windows machine, a cached Turbopack child-process error can be bypassed for local verification with `npm run build -- --webpack`. Vercel's clean production Turbopack build passes.
-
 `out/` is the deployment artifact; use static hosting with directory-index support. The preview serves http://localhost:3000. `next start` is not required for this export.
 
 ## Content
 
 `src/data/profile.ts` is the main content registry; `project-depth.ts` adds technical case-study content and `engineering-archive.ts` contains recovered engineering history. Six featured projects demonstrate breadth. The full collection has filters and static detail routes. The default CV is General Engineering; the separate AI CV remains available. Only verified public repository URLs are shown.
 
-The enhanced collection includes27 technical case studies, a Profile page, credential library, CV context and an interactive Engineering Lab. Source-traced graph/RL replays, source-equation embedded and Fourier tools, synthetic scheduling, and real MNIST comparison outputs are explicitly distinguished from historical submissions. SEO uses one canonical host, named metadata, Person/WebSite/ProfilePage/CreativeWork and a narrowly scoped SoftwareSourceCode entity.
+The collection has **10 major projects**, **17 historical engineering studies** and **10 interactive browser experiences**. The demos are new views of existing work, not ten additional historical projects. `/projects/` is the complete major-project index; `/lab/` retains historical studies and four themed collections; `/playground/` is the dedicated Interactive Engineering Lab. The sitemap contains44 public routes. SEO uses one canonical host, named metadata, Person/WebSite/ProfilePage/CreativeWork and a narrowly scoped SoftwareSourceCode entity.
+
+Browser recreations live in `src/components/demos/` and `src/lib/playground-models.ts`, separately from preserved university source. Each dedicated demo loads only after the visitor opens it; only that instrument mounts. Automatic playback pauses offscreen, in hidden tabs and under reduced motion. Manual steps, textual state and native controls remain available. No new simulation dependency, browser training, OS threads or hardware execution is implied.
+
+Andre uses correct non-preemptive timing boundaries, explicitly disclosing original aggregate errors. Dijkstra final distances match all five retained Java runs. Four Rooms defaults to genuine recorded episodes, with a separately labelled clean-room manual mode. Word scores follow the original word-length rule. Image components use four-neighbour BFS over synthetic pixels, and the puzzle uses source-established legal adjacent swaps and the authored city asset. Source-derived Fourier and ADC/PWM models remain mathematical explanations. `npm test` covers22 model/evidence cases, including input boundaries and inventory reconciliation.
 
 The homepage's single moon starts high and only sets during forward scroll through the continuous night-city scene. Native reduced motion is respected, with an explicit moon play/pause control. UCT remains prominent; year-matched official handbook context is distinct from actual project implementation. Four engineering spotlights and a stronger Lab entry lead into the full archive. See [scene architecture and evidence boundaries](MOON_EXPERIENCE.md).
 
