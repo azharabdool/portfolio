@@ -3,7 +3,19 @@ import { profile } from '@/data/profile';
 import { credentialEvidence, credentialTypes } from '@/data/credentials';
 import { pageMetadata, absoluteUrl, personId } from '@/lib/seo';
 import { StructuredData } from '@/components/structured-data';
+import { HonoursModules } from '@/components/honours-modules';
 export const metadata = pageMetadata('About Azhar Abdool', 'Azhar Abdool: University of Cape Town (UCT) Computer Science and Computer Engineering graduate and professional Software Engineer, working across applied AI, data and real-world systems.', '/profile/');
 export default function ProfilePage() {
-  return <article className="project-detail container profile-page"><StructuredData data={{'@context':'https://schema.org','@type':'ProfilePage',url:absoluteUrl('/profile/'),name:'About Azhar Abdool',mainEntity:{'@id':personId}}}/><p className="eyebrow">ENGINEER PROFILE</p><h1>Azhar Abdool</h1><p className="lead">{profile.title}</p><div className="profile-prose"><h2>Software, data and the physical world</h2><p>{profile.about}</p><p>{profile.aboutDetail}</p><h2>Engineering in practice</h2><p>At NCT Forestry, Azhar develops enterprise software using Oracle APEX and PL/SQL, with integrations, GIS workflows and role-based access control. His university ML experiments and independent Foundry work provide a separate applied-AI foundation.</p><h2>Work across disciplines</h2><p>The portfolio connects digit classification, reinforcement learning, data analysis, Foundry workflows, STM32 peripherals, algorithms, concurrent Java applications and networks. Collaborative coursework and new portfolio demonstrations are identified on their project pages.</p><div className="profile-links"><Link href="/#projects">Selected projects</Link><Link href="/lab/">Engineering Lab</Link><Link href="/resume/">CVs</Link><Link href="/credentials/">Credential documents</Link><a href={profile.github}>GitHub</a><a href={profile.linkedin}>LinkedIn</a></div><h2>Credentials and training</h2>{credentialEvidence.filter(c => c.featured).map(c => <section key={c.slug}><h3>{c.title}</h3><p>{credentialTypes[c.kind]} · {c.issuer}. {c.detail}</p></section>)}<Link href='/credentials/'>View all credential documents</Link></div></article>;
+  return <article className="project-detail container profile-page">
+    <StructuredData data={{'@context':'https://schema.org','@type':'ProfilePage',url:absoluteUrl('/profile/'),name:'About Azhar Abdool',mainEntity:{'@id':personId}}}/>
+    <p className="eyebrow">ENGINEER PROFILE</p><h1>Azhar Abdool</h1><p className="lead">{profile.title}</p>
+    <div className="profile-prose">
+      <h2>Software, data and the physical world</h2><p>{profile.about}</p><p>{profile.aboutDetail}</p>
+      <h2>Engineering in practice</h2><p>At NCT Forestry, Azhar develops enterprise software using Oracle APEX and PL/SQL, with integrations, GIS workflows and role-based access control. His university ML experiments and independent Foundry work provide a separate applied-AI foundation.</p>
+      <h2>Work across disciplines</h2><p>The portfolio connects digit classification, reinforcement learning, data analysis, Foundry workflows, STM32 peripherals, algorithms, concurrent Java applications and networks. Collaborative coursework and new portfolio demonstrations are identified on their project pages.</p>
+      <h2>Current Honours study</h2><p>Part-time BSc Honours in Security &amp; Network Engineering at Eduvos. Selected coursework connects analytical data preparation, service architecture and web trust boundaries.</p><HonoursModules/>
+      <div className="profile-links"><Link href="/#projects">Selected projects</Link><Link href="/lab/">Engineering Lab</Link><Link href="/resume/">CVs</Link><Link href="/credentials/">Credential documents</Link><a href={profile.github}>GitHub</a><a href={profile.linkedin}>LinkedIn</a></div>
+      <h2>Credentials and training</h2>{credentialEvidence.filter(c => c.featured).map(c => <section key={c.slug}><h3>{c.title}</h3><p>{credentialTypes[c.kind]} · {c.issuer}. {c.detail}</p></section>)}<Link href='/credentials/'>View all credential documents</Link>
+    </div>
+  </article>;
 }

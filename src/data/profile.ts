@@ -8,7 +8,7 @@ export const profile = {
   aiCv: '/Azhar-Abdool-AI-Engineering-CV.pdf',
   intro: 'Building intelligent software, data platforms and real-world systems.',
   about: 'My background connects software and computer engineering. I graduated from the University of Cape Town in Computer Science and Computer Engineering in 2025 and now develop enterprise software at NCT Forestry. That foundation carries through to my work with machine learning, Foundry data workflows, embedded systems and networks.',
-  aboutDetail: 'I work across the software-to-hardware spectrum, with a growing focus on intelligent, data-driven systems. My current part-time Honours study in Security & Network Engineering adds a security perspective to how I build and integrate systems.',
+  aboutDetail: 'I work across the software-to-hardware spectrum, with a growing focus on intelligent, data-driven systems. My part-time Honours in Security & Network Engineering connects data mining, service architecture and web-boundary protection to how I reason about systems.',
 };
 
 export const categories = ['All', 'AI & ML', 'Data / FDE', 'Software', 'Embedded', 'Systems', 'Security & Networks'] as const;
@@ -154,8 +154,8 @@ export const projects: Project[] = [
 
 export const skillGroups = [
   { title: 'AI & Data', number: '01', items: ['Python', 'PyTorch', 'scikit-learn', 'pandas / NumPy', 'Classification', 'Q-learning', 'K-Means / PCA'] },
-  { title: 'Software Engineering', number: '02', items: ['Java / JavaScript', 'C / C++ / C#', 'React Native', 'REST APIs', 'Git', 'Testing & debugging'] },
+  { title: 'Software Engineering', number: '02', items: ['Java / JavaScript', 'C / C++ / C#', 'React Native', 'REST APIs', 'Git', 'Testing & debugging', 'Service architecture studies'] },
   { title: 'Enterprise & Platforms', number: '03', items: ['Oracle / PL/SQL', 'Oracle APEX', 'SQL / MySQL', 'Palantir Foundry', 'Ontology / AIP Logic', 'Firebase', 'Enterprise workflows'] },
   { title: 'Embedded & Systems', number: '04', items: ['STM32', 'ADC / PWM', 'Timers / DMA', 'Microcontrollers', 'Operating systems', 'Concurrency'] },
-  { title: 'Security & Networks', number: '05', items: ['TCP / UDP', 'Wireshark', 'RBAC', 'Input validation', 'Application security', 'Azure security coursework'] },
+  { title: 'Security & Networks', number: '05', items: ['TCP / UDP', 'Wireshark', 'RBAC', 'Input validation', 'ModSecurity configuration study', 'WAF phases / trust boundaries', 'Azure security coursework'] },
 ];

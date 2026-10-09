@@ -2,23 +2,17 @@
 
 import Image from 'next/image';
 import { Pause, Play } from 'lucide-react';
-import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { useEffect, useRef } from 'react';
 import { journeyProgress, moonState, settleJourney } from '@/lib/moon-journey';
 import { CityLighting } from './city-lighting';
 
-function subscribeMotion(callback: () => void) {
-  const media = matchMedia('(prefers-reduced-motion: reduce)');
-  media.addEventListener('change', callback);
-  return () => media.removeEventListener('change', callback);
-}
+import { useMotionPreference } from '@/hooks/use-motion-preference';
 
 export function MoonJourney() {
   const scene = useRef<HTMLDivElement>(null);
   const lastProgress = useRef(0);
   const initialised = useRef(false);
-  const reduced = useSyncExternalStore(subscribeMotion, () => matchMedia('(prefers-reduced-motion: reduce)').matches, () => false);
-  const [preference, setPreference] = useState<boolean | null>(null);
-  const enabled = preference ?? !reduced;
+  const { enabled, toggle } = useMotionPreference();
   useEffect(() => {
     const node = scene.current;
     if (!node) return;
@@ -101,5 +95,5 @@ export function MoonJourney() {
     <div className='journey-horizon'><Image src='/images/night-city.webp' alt='' fill priority sizes='100vw' /><CityLighting/></div>
     <div className='journey-reflection' />
     <div className='journey-foreground' />
-  </div></div></div><button type='button' className='motion-toggle' aria-label={enabled ? 'Pause moon motion' : 'Enable moon motion'} title={enabled ? 'Pause moon motion' : 'Enable moon motion'} aria-pressed={enabled} onClick={() => setPreference(!enabled)}>{enabled ? <Pause size={16} /> : <Play size={16} />}</button></>;
+  </div></div></div><button type='button' className='motion-toggle' aria-label={enabled ? 'Pause moon motion' : 'Enable moon motion'} title={enabled ? 'Pause moon motion' : 'Enable moon motion'} aria-pressed={enabled} onClick={toggle}>{enabled ? <Pause size={16} /> : <Play size={16} />}</button></>;
 }

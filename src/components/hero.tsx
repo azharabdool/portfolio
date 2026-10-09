@@ -8,8 +8,8 @@ export function Hero() {
       <div className="hero-inner container">
         <div className="hero-copy">
           <p className="eyebrow"><span className="line" /> ENGINEERING ACROSS BOUNDARIES</p>
-          <h1 id="hero-title">Azhar Abdool<span className="name-period">.</span></h1>
-          <p className="hero-role">Software &amp; Computer Engineer</p>
+          <h1 id="hero-title"><span className='hero-name'>Azhar Abdool</span><span className="name-period">.</span></h1>
+          <p className="hero-role">Software <span className='role-connector'>&amp;</span> Computer Engineer</p>
           <p className="hero-description">{profile.intro}</p>
           <div className="hero-actions">
             <a href="#projects" className="button button-primary">Explore my work <ArrowRight size={17} /></a>

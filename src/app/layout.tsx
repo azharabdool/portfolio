@@ -15,6 +15,7 @@ import './moon-story.css';
 import './final-polish.css';
 import './playground.css';
 import './study-workbench.css';
+import './city-identity.css';
 
 export const metadata: Metadata = {
   metadataBase: siteOrigin,

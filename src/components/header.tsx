@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowUpRight, FlaskConical, Menu, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
@@ -36,8 +37,8 @@ export function Header() {
     <header className="site-header">
       <div className="header-inner">
         <Link href="/" aria-label="Azhar Abdool home" className="brand" onClick={() => setOpen(false)}>
-          <span className="brand-mark" aria-hidden="true">A<span /></span>
-          <span>Azhar Abdool<span className="brand-caption">SOFTWARE & COMPUTER ENGINEERING</span></span>
+          <Image className='brand-emblem' src='/icon.svg' alt='' width={42} height={42}/>
+          <span className='brand-wordmark'>Azhar Abdool<span className="brand-caption">SOFTWARE / COMPUTER ENGINEERING</span></span>
         </Link>
         <nav aria-label="Main navigation" id="main-navigation" className={open ? 'navigation is-open' : 'navigation'}>
           <Link href="/" className="mobile-home" onClick={() => setOpen(false)}>Home</Link>
