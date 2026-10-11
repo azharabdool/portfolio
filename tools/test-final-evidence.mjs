@@ -7,6 +7,12 @@ import { archiveProjects } from '../src/data/engineering-archive.ts';
 import { credentialEvidence } from '../src/data/credentials.ts';
 import { findCourseContext } from '../src/data/course-context.ts';
 
+test('profile route links the verified public professional README', () => {
+  const source = fs.readFileSync(new URL('../src/app/profile/page.tsx', import.meta.url), 'utf8');
+  assert.match(source, /href="https:\/\/github\.com\/azharabdool\/azharabdool#readme">GitHub profile README/);
+  assert.doesNotMatch(source, /https:\/\/github\.com\/azharabdool\/operating-systems-simulations/);
+});
+
 test('featured six include RL instead of student-performance, without losing either', () => {
   const featured = projects.filter(p => p.featured).map(p => p.slug);
   assert.equal(featured.length, 6);
