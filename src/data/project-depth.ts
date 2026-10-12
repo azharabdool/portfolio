@@ -69,11 +69,11 @@ export const projectDepth: Record<string, ProjectDepth> = {
   },
   'computer-vision-connected-components': {
     why: 'Identify connected foreground regions and remove components outside a chosen size range in grayscale images.',
-    contribution: 'Individual C++ coursework implementation, retaining the third-party Catch test-header licence. Supplied sample-image provenance is separate from source ownership.',
-    implementation: ['Read a PGM raster, threshold grayscale pixels, then use queue-based neighbour traversal to discover connected components.', 'Store component pixels, derive size statistics and filter using minimum/maximum limits before writing a mask.', 'The class also implements copy/move ownership behaviour. Cleanup reorganises setup and renames the student-number namespace without changing the algorithm.', 'GCC C++17 compilation and the submitted test suite passed 19 assertions in two cases. A new synthetic input is used for the public visual to avoid redistributing unknown sample images.'],
+    contribution: 'Individual C++ coursework implementation. The public release uses authored synthetic fixtures and new verification; supplied images, Catch and original fixture-dependent tests remain privately preserved.',
+    implementation: ['Read a PGM raster, threshold grayscale pixels, then use four-neighbour queue traversal to discover connected components.', 'Store component pixels, derive size statistics and filter using minimum/maximum limits before writing a mask.', 'The class implements copy/move ownership behaviour. Labelled 2026 changes add bounded input parsing, reject zero thresholds, release temporary components and erase filtered elements safely without replacing the traversal algorithm.', 'Private historical verification passed 19 assertions in two submitted cases. Public release-day verification separately passed six synthetic regressions, ten malformed-input cases and four additional safety/output checks.'],
     challenges: 'Connectivity, threshold boundaries, image parsing and object ownership need to agree; test expectations cover only a small surface.',
     learned: 'Viewing an image as a graph and combining traversal algorithms with C++ resource management.',
-    improve: 'Test malformed headers, CLI bounds and tiny/empty components; compare every mask pixel against an independent reference and document connectivity explicitly.',
+    improve: 'Add sanitizer coverage, copy/move edge-case tests and an independent per-pixel reference across more synthetic connectivity cases. Improve boundary counting and clarify empty-component summary semantics.',
   },
   'foundry-supply-demand-planning': {
     why: 'A supplied planning brief connects manufacturing forecasts, production actuals and product master data.',

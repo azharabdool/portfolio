@@ -122,13 +122,14 @@ export const projects: Project[] = [
   {
     slug: 'computer-vision-connected-components', title: 'Structure inside grayscale images', category: 'Systems', year: '2024', context: 'UCT · CSC3022', visual: 'vision',
     image: '/images/connected-components.webp', imageAlt: 'New synthetic input beside the mask produced by the original connected-component algorithm',
+    repository: 'https://github.com/azharabdool/computer-vision-connected-components',
     description: 'Turn grayscale pixels into countable regions using thresholding, breadth-first flood fill and component-size filtering in C++.', tags: ['C++', 'Image processing', 'BFS'],
     overview: 'Extract connected foreground regions from PGM images, inspect component statistics and write filtered masks.',
     approach: 'Apply a grayscale threshold, traverse connected neighbours using a queue-based flood fill, store component pixels and filter by minimum/maximum size.',
     pipeline: ['PGM image', 'Threshold', 'BFS traversal', 'Size filter', 'Output mask'],
-    results: ['The submitted processor compiled, passed 19 assertions in two tests and generated a mask from a new synthetic input.', 'The public visual uses original synthetic shapes rather than supplied image fixtures with unclear redistribution rights.'],
-    limitations: 'Classical image processing, with no trained model. Original test expectations and input-validation limitations are documented in the project notes.',
-    attribution: 'Authored coursework with supplied image fixtures and a third-party Catch test header.',
+    results: ['The submitted processor compiled, passed 19 assertions in two private tests and generated a mask from a new synthetic input.', 'The public release passed six synthetic regressions, ten malformed-input checks and four additional safety/output checks on 12 October 2026. Supplied fixtures and teaching tests remain excluded.'],
+    limitations: 'Classical image processing, with no trained model. Only 8-bit P5 is supported; threshold zero is rejected because the original traversal uses zero as its visited marker. Safety fixes are labelled post-project improvements.',
+    attribution: 'Individual UCT coursework; public source includes labelled 2026 safety fixes and authored synthetic examples only. Supplied images and the third-party Catch header remain private.',
   },
   {
     slug: 'networking-p2p-chat-prototype', title: 'Coordinating peers over a network', category: 'Security & Networks', year: '2024', context: 'UCT · CSC3002 · Collaborative', visual: 'network',

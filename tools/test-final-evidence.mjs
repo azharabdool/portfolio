@@ -7,6 +7,16 @@ import { archiveProjects } from '../src/data/engineering-archive.ts';
 import { credentialEvidence } from '../src/data/credentials.ts';
 import { findCourseContext } from '../src/data/course-context.ts';
 
+test('connected-components source links only the verified synthetic-only release', () => {
+  const project = projects.find(p => p.slug === 'computer-vision-connected-components');
+  assert.equal(project.repository, 'https://github.com/azharabdool/computer-vision-connected-components');
+  assert.match(project.attribution, /synthetic examples only/);
+  const notes = fs.readFileSync(new URL('../public/project-notes/computer-vision-connected-components.md', import.meta.url), 'utf8');
+  assert.match(notes, /python input_checks.py/);
+  assert.doesNotMatch(notes, /\.\/components[^\n]*Birds\.pgm|g\+\+[^\n]*tests\.cpp/);
+  assert.match(notes, /threshold zero/);
+});
+
 test('profile route links the verified public professional README', () => {
   const source = fs.readFileSync(new URL('../src/app/profile/page.tsx', import.meta.url), 'utf8');
   assert.match(source, /href="https:\/\/github\.com\/azharabdool\/azharabdool#readme">GitHub profile README/);

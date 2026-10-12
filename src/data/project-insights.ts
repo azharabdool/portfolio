@@ -39,8 +39,8 @@ export const projectInsights: Record<string, ProjectInsight> = {
     tools: [entry('C++ / std::queue', 'Manage pixel buffers and run breadth-first flood fill.'), entry('PGM / tests', 'Read binary grayscale rasters, write masks and check component behaviour on bounded inputs.')],
     concepts: [entry('Connectivity', 'Four-neighbour adjacency groups pixels differently from diagonal/eight-neighbour connectivity.'), entry('Threshold and size', 'Intensity selects foreground; component-size bounds then remove small or oversized regions.'), entry('Ownership', 'Copy/move operations and buffer lifetime matter independently of segmentation correctness.')],
     flow: [entry('Select foreground', 'Read a grayscale image and apply the chosen intensity threshold.'), entry('Traverse regions', 'Queue neighbours and mark visited pixels until each connected component is exhausted.'), entry('Filter and emit', 'Retain components within size bounds, report statistics and write the output mask.')],
-    check: 'The browser demo uses synthetic shapes to explore connectivity and thresholds. Its separate visited mask and safe controls are portfolio additions; original zero-as-visited behaviour makes threshold zero problematic.',
-    evidence: 'Processor source, original README and synthetic mask execution. Header/range checks in the enhanced source are labelled later improvements.',
+    check: 'The browser recreation uses a separate visited mask. The public C++ retains the original zero-as-visited traversal and therefore rejects zero thresholds. Release-day checks include six synthetic regressions, ten malformed inputs and four safety/output cases; these are not image-accuracy benchmarks.',
+    evidence: 'Named processor source and authored synthetic input/mask execution. Public parsing, scoped ownership and iterator fixes are labelled 2026 improvements; supplied fixtures and teaching tests are withheld.',
   },
   'foundry-ai-infographic-dashboard': {
     purpose: 'Bridge enterprise analytical data and a question-led interface: make operational trends understandable while preserving the distinction between a dashboard observation and a verified AI answer.',
