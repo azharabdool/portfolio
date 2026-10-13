@@ -99,14 +99,15 @@ export const projects: Project[] = [
   },
   {
     slug: 'operating-systems-simulations', title: 'OS scheduling: Andre the Barman', category: 'Systems', year: '2024', context: 'UCT · CSC3002', visual: 'systems', featured: true,
+    repository: 'https://github.com/azharabdool/operating-systems-simulations',
     description: 'Explore queue policy, thread coordination and measurement validity through FCFS/SJF service simulation and a separate address translator.',
     tags: ['Java', 'Concurrency', 'Operating systems'],
     overview: 'Explore the behaviour of scheduler policies in a concurrent service simulation and map virtual addresses to physical frames using a fixed page table.',
     approach: 'Patron and service threads coordinate with CountDownLatch. FIFO and priority queues support FCFS/SJF policies; timing outputs capture wait, response and turnaround behaviour. A separate memory exercise decodes little-endian addresses.',
     pipeline: ['Concurrent requests', 'FIFO / priority queue', 'FCFS / SJF service', 'Timing outputs'],
-    results: ['Source compiled with JDK 17; both three-patron FCFS/SJF smoke runs completed.', 'The address translator reproduced eight physical addresses from the supplied fixture.'],
+    results: ['Private scheduling source compiled with JDK 17; both three-patron FCFS/SJF smoke runs completed.', 'The original address translator reproduced eight physical addresses from the private supplied fixture.', 'The public translator passed eight authored synthetic translations and three invalid-record checks on 13 October 2026; both stdout and file output were verified.'],
     limitations: 'Fresh runs expose an invalid turnaround aggregate: the order arrival field is not populated, and waiting/response aggregates use the global service start rather than each order arrival. These are not valid scheduler benchmarks. Teaching scaffolding is attributed.',
-    attribution: 'UCT CSC3002, 2024. Built on teaching skeleton code; portfolio cleanup reorganises the source.',
+    attribution: 'UCT CSC3002, 2024. Individual address translator and authored verification are public with bounded scheduling notes. Teaching scheduler source and supplied binary fixtures remain private; defensive record handling is labelled post-project work.',
   },
   {
     slug: 'reinforcement-learning-four-rooms', title: 'Learning to navigate Four Rooms', category: 'AI & ML', year: '2024', context: 'UCT · CSC3022', visual: 'rooms', featured: true,

@@ -80,7 +80,7 @@ export const projectInsights: Record<string, ProjectInsight> = {
     concepts: [entry('Policy vs mechanism', 'Queue ordering selects work; threads, blocking and completion signals implement service coordination.'), entry('Timing definitions', 'Response, waiting and turnaround use per-request boundaries, not a shared simulation start.'), entry('Fair comparison', 'Policies need the same workload. SJF starvation is a theoretical risk, not a measured result in these recovered runs.')],
     flow: [entry('Submit requests', 'Patron threads create orders after a coordinated start.'), entry('Select and service', 'The barman consumes a FIFO or priority queue, simulates service duration and signals completion.'), entry('Audit the metrics', 'Check per-order timestamp definitions before comparing aggregates.')],
     check: 'The browser scheduling model uses an explicit synthetic workload. Original Java smoke runs completed, but missing arrival initialization and global timing boundaries invalidate its aggregate benchmarks.',
-    evidence: 'Source and named scheduling reports; report claims of superior averages are not promoted over the timing defects found in code.',
+    evidence: 'Named scheduling reports and privately preserved teaching source; claimed superior averages are not promoted over timing defects. The public individual translator separately passes eight synthetic translations and three invalid-record checks; no teaching scheduler is released.',
   },
   'networking-p2p-chat-prototype': {
     purpose: 'Separate discovery from direct communication. A central coordination path locates peers, while a second transport carries messages; that separation exposes practical questions about framing, concurrency and trust.',

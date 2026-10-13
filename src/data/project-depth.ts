@@ -53,11 +53,11 @@ export const projectDepth: Record<string, ProjectDepth> = {
   },
   'operating-systems-simulations': {
     why: 'Compare queue policies under competing requests and separately understand how a page-table mapping translates addresses.',
-    contribution: 'Individual OS coursework on attributed teaching scaffolding. The console programme explicitly identifies Andre the Barman; the Swing club simulation is a different 2023 assignment.',
-    implementation: ['Patron threads submit DrinkOrder objects to a BlockingQueue. FCFS uses LinkedBlockingQueue; SJF uses PriorityBlockingQueue with the order comparison.', 'A CountDownLatch coordinates the initial start. The barman thread takes orders, sleeps for their service duration and signals completion.', 'Three-patron runs under each policy completed on JDK 17. They exposed invalid aggregate timing calculations, which the source-backed review documents.', 'The separate OS1 exercise uses a fixed seven-entry page table and a seven-bit offset; eight fixture translations were reproduced.'],
+    contribution: 'Individual named address translator; scheduling coursework on attributed teaching scaffolding remains private. The console programme identifies Andre the Barman; the Swing club simulation is a different 2023 assignment.',
+    implementation: ['Patron threads submit DrinkOrder objects to a BlockingQueue. FCFS uses LinkedBlockingQueue; SJF uses PriorityBlockingQueue with the order comparison.', 'A CountDownLatch coordinates the initial start. The barman thread takes orders, sleeps for their service duration and signals completion.', 'Private three-patron runs under each policy completed on JDK 17. They exposed invalid aggregate timing calculations, which remain disclosed rather than treated as benchmarks.', 'The public OS1 translator decodes little-endian eight-byte records using a fixed seven-entry page table and a seven-bit offset. Labelled later changes reject truncated/out-of-range records; eight synthetic translations and three invalid-record checks passed on 13 October 2026.'],
     challenges: 'A runnable simulation is not necessarily a valid measurement system. Arrival-time initialisation and per-order timing boundaries are as important as queue choice.',
     learned: 'Blocking queues, barriers and service coordination, plus how to audit measurements against their definitions.',
-    improve: 'Fix arrival/first-service/completion timestamps in a new labelled experiment, reuse identical workloads across policies and add unit tests for timing and address-record boundaries.',
+    improve: 'Fix per-order timestamps in a new scheduling experiment and reuse identical workloads across policies. Extend translator stream/alias-path tests and write output atomically so a failed run cannot leave partial results.',
   },
   'networking-p2p-chat-prototype': {
     why: 'Separate registration and discovery from direct peer messaging in a sockets-based networking assignment.',

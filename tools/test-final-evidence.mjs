@@ -7,6 +7,19 @@ import { archiveProjects } from '../src/data/engineering-archive.ts';
 import { credentialEvidence } from '../src/data/credentials.ts';
 import { findCourseContext } from '../src/data/course-context.ts';
 
+test('systems publication links only the individual translator and bounded notes', () => {
+  const project = projects.find(p => p.slug === 'operating-systems-simulations');
+  assert.equal(project.repository, 'https://github.com/azharabdool/operating-systems-simulations');
+  assert.match(project.attribution, /Teaching scheduler source.*remain private/);
+  const source = fs.readFileSync(new URL('../src/app/projects/[slug]/page.tsx', import.meta.url), 'utf8');
+  assert.match(source, /Translator repository/);
+  assert.match(source, /Teaching scheduler source remains private/);
+  const notes = fs.readFileSync(new URL('../public/project-notes/operating-systems-simulations.md', import.meta.url), 'utf8');
+  assert.match(notes, /python verify_translation.py/);
+  assert.doesNotMatch(notes, /java[^\n]*barScheduling|javac[^\n]*scheduling\//);
+  assert.match(notes, /No paging, replacement, TLB or page-fault handler is implemented/);
+});
+
 test('connected-components source links only the verified synthetic-only release', () => {
   const project = projects.find(p => p.slug === 'computer-vision-connected-components');
   assert.equal(project.repository, 'https://github.com/azharabdool/computer-vision-connected-components');

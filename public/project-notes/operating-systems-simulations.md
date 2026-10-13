@@ -1,64 +1,71 @@
-# Operating Systems Simulations
+# Operating Systems: Address Translation and Scheduling Notes
 
-Java experiments in address translation and concurrent FCFS/SJF scheduling.
+An individual Java virtual-address translator and documentation of related scheduling coursework.
+
+New browser explanations: [virtual-address explorer](https://azharabdool.vercel.app/playground/virtual-memory/) and [Andre's scheduling simulation](https://azharabdool.vercel.app/playground/andre/). These are portfolio recreations, separate from the original Java source. Andre uses synthetic inputs and corrected timing boundaries; historical invalid aggregates remain disclosed.
 
 ## Overview
 
-Compare scheduler policies in a threaded service simulation and translate virtual addresses through a fixed page table.
-
-Origin: UCT CSC3002, 2024. Scheduling builds on supplied teaching skeleton code; retained comments identify that scaffolding.
+UCT CSC3002, 2024. Translate little-endian eight-byte address records through a fixed page table. Scheduling experiments are documented, but their teaching scaffold is withheld pending reuse permission.
 
 ## Technical Approach
 
-The scheduling experiment uses patron threads, a barman thread, CountDownLatch coordination and FIFO/priority queues for FCFS/SJF. The memory exercise reads little-endian address records and maps 7-bit page offsets to fixed physical frames.
+Compute page = address >> 7, offset = address & 0x7F and physical = (pageTable[page] << 7) + offset. The assignment-defined frame table is [2,4,1,7,3,5,6]. No paging, replacement, TLB or page-fault handler is implemented.
 
 ## Tech Stack
 
-Java; standard concurrency and I/O libraries. A full JDK (8 or later) is required, not only the installed JRE.
+Java; Python 3 standard library for newly authored fixture generation and verification. JDK 17 was used for recovery and the release-day build.
 
 ## Key Features
 
-- FCFS and SJF modes
-- threaded simulation
-- waiting/response/turnaround reporting
-- throughput calculation
-- virtual-to-physical mapping.
+- Little-endian binary input and hexadecimal physical-address output.
+- Fixed page-table lookup and bit-level translation.
+- Clearly separated scheduling documentation and execution limitations.
 
 ## Architecture / Pipeline
 
-Patron threads --> order queue --> FCFS or SJF service --> timing outputs
+```mermaid
+flowchart LR
+    A[64-bit input record] --> P[Page and 7-bit offset] --> T[Fixed page table] --> F[Frame plus offset] --> O[Hex physical address]
+```
 
 ## Results
 
-Verification on 2026-10-05 found an installed JDK 17. Both three-patron FCFS/SJF runs completed, and the address translator produced eight physical addresses from the supplied fixture.
+The original translator compiled and processed eight supplied addresses during private verification. The new public fixture exercises page boundaries and yields 0x100, 0x144, 0x17f, 0x200, 0x27f, 0x80, 0x2ff and 0x37f.
 
-Important: the fresh scheduling runs expose invalid aggregate timing calculations. DrinkOrder's arrival field is not populated, producing epoch-sized turnaround values. Waiting/response aggregates are measured from the barman's global start instead of each order's arrival. Do not cite these as valid policy benchmarks. The original implementation is retained; fixing measurement boundaries is a future improvement.
+The separate Andre-the-Barman simulation implements FCFS/SJF queues, patron threads and shared synchronisation. It is console-based, not a recovered bartender GUI. Its arrival timestamp is not assigned, and aggregate waiting/response measurements use a shared start; therefore no valid policy-speedup or turnaround claim is made. The related graphical club is a different coursework project.
 
 ## Running the Project
 
 ```sh
-# Run from repository root with a JDK:
-mkdir build
-javac -d build scheduling/*.java virtual-memory/OS1Assignment.java
-java -cp build barScheduling.SchedulingSimulation 10 0
-java -cp build barScheduling.SchedulingSimulation 10 1
-java -cp build OS1Assignment virtual-memory/OS1testsequence
+python generate_fixture.py
+javac -d build OS1Assignment.java
+java -cp build OS1Assignment generated-addresses.bin
+# Fresh build + synthetic checks in an isolated temporary directory:
+python verify_translation.py
 ```
+
+Output is printed and written to `output-OS1`. The original submission lacked out-of-range and partial-record validation. The enhanced copy rejects invalid records and supports 0..895, with the same table/bit operations. Identical normalised input/output paths are rejected; symlink/hard-link aliases are not independently checked. Output is not atomic: a failed run can leave an empty or partial output file.
+
+`java` and `javac` must refer to a JDK on PATH. The verification script also accepts `--java` and `--javac` executable paths. It compiles the reviewed source afresh, generates only authored records, checks both stdout/file output and removes temporary test artifacts automatically.
 
 ## Project Structure
 
-scheduling/: four Java simulation classes; virtual-memory/: address translator and small binary fixture; build/: ignored output.
+`OS1Assignment.java`: named individual translator; `generate_fixture.py`: new public test input; `verify_translation.py`: newly authored isolated build/checks; `README.md`: bounded systems/scheduling documentation. Original binary fixture and unchanged teaching scheduling files are excluded.
 
 ## What I Learned
 
-Scheduling tradeoffs, queue policies, thread coordination and address translation.
+Address encoding, page/offset decomposition, file I/O and the importance of valid per-request timestamps when comparing scheduling policies.
 
 ## Possible Improvements
 
-The separate individual-translator public release now has defensive record handling and nonzero error status. Those labelled enhancements are mirrored into this clean copy; original source outside staging is unchanged. Eight valid translations and three invalid-record checks pass. The teaching scheduler remains private and its timing defects are not claimed as corrected historical results.
+Correct and separately evaluate scheduling timestamps; test concurrent state and control workload seeds. Add atomic output handling and further file-boundary tests to the translator.
 
-Seed/order experiments, review timing measurement boundaries, add confidence intervals and validate truncated address records.
+## Portfolio Enhancements
+
+The individual translator now completes short stream reads before decoding an eight-byte record, rejects truncated records and addresses outside 0..895, and reports an input error with nonzero exit status. The fixed table and bitwise translation are unchanged. Fresh release-day checks on 2026-10-13 passed eight valid translations (both stdout and output file) and three invalid-record cases. New fixture records are synthetic, not the original supplied binary. These finite checks are not a complete security or stream-I/O audit.
+
 
 ## Portfolio Cleanup / Post-project Improvements
 
-Flattened nested source directories, removed compiled classes and documented build commands. Teaching skeleton attribution is preserved.
+Initial cleanup added documentation and an authored boundary fixture without changing translation. The subsequent labelled enhancements add defensive record handling; valid address mapping is unchanged. Restricted teaching source and original supplied binary input remain private.
