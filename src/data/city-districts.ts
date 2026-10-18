@@ -37,7 +37,7 @@ export const cityDistricts = [
     summary: 'Current Honours work examines web request guards and security-aware system design. Earlier socket coursework makes discovery, message framing and insecure transport assumptions concrete.',
     tools: ['ModSecurity configuration', 'Python sockets', 'TCP / UDP'], theory: ['Defence in depth', 'Request phases', 'Framing / trust'],
     evidence: 'Two inspected WAF rules, architecture analysis and a collaborative networking prototype; no secure-stack deployment claimed.', href: '/engineering/waf-request-filtering/',
-    related: [{ label: 'Peer networking prototype', href: '/projects/networking-p2p-chat-prototype/' }, { label: 'Current Honours study', href: '/#honours' }],
+    related: [{ label: 'Peer networking prototype', href: '/projects/networking-p2p-chat-prototype/' }, { label: 'Current Honours study', href: '/profile/#honours' }],
   },
 ];
 

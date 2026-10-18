@@ -51,7 +51,8 @@ test('ideal PWM is flat at both duty-cycle endpoints, with pulses only between t
 
 test('homepage preserves depth and contains purposeful previews, without a fabricated app screen',()=>{
   const page=fs.readFileSync(new URL('../src/app/page.tsx',import.meta.url),'utf8');
-  assert.match(page,/ConnectedSystem/);assert.match(page,/EngineeringSpotlights/);assert.match(page,/EducationFeature/);assert.doesNotMatch(page,/CityTransition|InteractiveLabCTA/);
+  assert.match(page,/ConnectedSystem/);assert.match(page,/homeFeaturedSlugs/);assert.doesNotMatch(page,/CityTransition|InteractiveLabCTA|EngineeringSpotlights|EducationFeature|CredentialGrid|skillGroups/);
+  const profile=fs.readFileSync(new URL('../src/app/profile/page.tsx',import.meta.url),'utf8');assert.match(profile,/EducationFeature/);assert.match(profile,/skillGroups/);
   const card=fs.readFileSync(new URL('../src/components/card-preview.tsx',import.meta.url),'utf8');
   assert.match(card,/episode.trace.map/);assert.match(card,/schedule\(jobs,policy\)/);assert.match(card,/NOT AN APP SCREEN/);
   assert.match(card,/className='preview-recorded-agent'/);assert.doesNotMatch(card,/className='preview-agent'/);

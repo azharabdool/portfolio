@@ -10,8 +10,8 @@ import { CommandLauncher } from './command-launcher';
 
 const navigation = [
   { label: 'Projects', id: 'projects', href: '/projects/' }, { label: 'Lab', id: 'engineering-archive', href: '/lab/' }, {label:'Playground',id:'playground',href:'/playground/'},
-  { label: 'About', id: 'about' }, { label: 'Experience', id: 'experience' },
-  { label: 'Education', id: 'education' }, { label: 'Credentials', id: 'certifications', href: '/credentials/' }, { label: 'Contact', id: 'contact' },
+  { label: 'Profile', id: 'about', href:'/profile/' }, { label: 'Experience', id: 'experience' },
+  { label: 'Credentials', id: 'certifications', href: '/credentials/' }, { label: 'Contact', id: 'contact' },
 ];
 
 export function Header() {
@@ -46,7 +46,7 @@ export function Header() {
           {navigation.map(item => <Link key={item.id} href={item.href ?? `/#${item.id}`} className={item.id === 'engineering-archive' ? 'nav-lab' : undefined} aria-current={item.href && pathname.replace(/\/$/, '') === item.href.replace(/\/$/, '') ? 'page' : pathname === '/' && active === item.id ? 'location' : undefined} onClick={() => { setOpen(false); setActive(item.id); }}>{item.id === 'engineering-archive' && <FlaskConical size={13} aria-hidden='true' />}{item.label}</Link>)}
         </nav>
         <CommandLauncher/>
-        <a className="header-contact" href={`mailto:${profile.email}`}>Let&apos;s talk <ArrowUpRight size={15} /></a>
+        <a className="header-contact" href={`mailto:${profile.email}`}>Email <ArrowUpRight size={15} /></a>
         <button ref={toggle} className="icon-button menu-toggle" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-controls="main-navigation" aria-expanded={open} onClick={() => setOpen(!open)} title={open ? 'Close navigation' : 'Open navigation'}>
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>

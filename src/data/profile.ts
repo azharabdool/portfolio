@@ -6,9 +6,9 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/azhar-abdool/',
   cv: '/Azhar-Abdool-General-Engineering-CV.pdf',
   aiCv: '/Azhar-Abdool-AI-Engineering-CV.pdf',
-  intro: 'Building intelligent software, data platforms and real-world systems.',
-  about: 'My background connects software and computer engineering. I graduated from the University of Cape Town in Computer Science and Computer Engineering in 2025 and now develop enterprise software at NCT Forestry. That foundation carries through to my work with machine learning, Foundry data workflows, embedded systems and networks.',
-  aboutDetail: 'I work across the software-to-hardware spectrum, with a growing focus on intelligent, data-driven systems. My part-time Honours in Security & Network Engineering connects data mining, service architecture and web-boundary protection to how I reason about systems.',
+  intro: 'Software, AI, embedded systems and the engineering in between.',
+  about: 'I graduated from the University of Cape Town in Computer Science and Computer Engineering in 2025. At NCT Forestry, I develop enterprise software using Oracle APEX, PL/SQL and React Native.',
+  aboutDetail: 'My university and independent work includes PyTorch classification, Q-learning, Foundry data workflows, STM32 peripherals and Java systems projects. I am studying part-time for BSc Honours in Security & Network Engineering at Eduvos.',
 };
 
 export const categories = ['All', 'AI & ML', 'Data / FDE', 'Software', 'Embedded', 'Systems', 'Security & Networks'] as const;

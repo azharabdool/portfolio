@@ -13,7 +13,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "check:links": "node tools/check-links.mjs",
-    "test": "node --test tools/test-moon-story.mjs tools/test-lab-models.mjs tools/test-final-evidence.mjs tools/test-playground.mjs tools/test-project-insights.mjs tools/test-city-identity.mjs tools/test-connected-system.mjs"
+    "test": "node --test tools/test-moon-story.mjs tools/test-lab-models.mjs tools/test-final-evidence.mjs tools/test-playground.mjs tools/test-project-insights.mjs tools/test-city-identity.mjs tools/test-connected-system.mjs tools/test-homepage-story.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

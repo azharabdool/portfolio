@@ -21,7 +21,7 @@ export const commandEntries: CommandEntry[] = [
   ...archiveProjects.map(p=>({id:`study-${p.slug}`,title:p.title,kind:'Study',href:`/engineering/${p.slug}/`,detail:`${p.course} · ${p.year}`,keywords:`${p.slug} ${p.tags.join(' ')} ${p.summary} ${networkTerms(p.slug)}`})),
   ...demos.map(d=>({id:`demo-${d.slug}`,title:d.slug==='andre'?'Run Andre':d.slug==='four-rooms'?'Play Four Rooms':d.title,kind:'Demo',href:`/playground/${d.slug}/`,detail:d.summary,keywords:`play run interactive demo ${d.slug} ${d.title} ${d.rules}`})),
   ...credentialEvidence.map(c=>({id:`credential-${c.slug}`,title:c.title,kind:'Credential',href:`/credentials/${c.slug}.pdf`,detail:c.issuer,keywords:`certification training certificate ${c.slug} ${c.title} ${c.issuer}`})),
-  ...skillGroups.map(g=>({id:`skill-${g.number}`,title:g.title,kind:'Skills',href:'/#skills',detail:g.items.join(' · '),keywords:`tools technologies ${g.items.join(' ')}`})),
+  ...skillGroups.map(g=>({id:`skill-${g.number}`,title:g.title,kind:'Skills',href:'/profile/#skills',detail:g.items.join(' · '),keywords:`tools technologies ${g.items.join(' ')}`})),
 ];
 export function searchCommands(query:string): CommandEntry[] {
   const words=query.toLowerCase().trim().split(/\s+/).filter(Boolean);

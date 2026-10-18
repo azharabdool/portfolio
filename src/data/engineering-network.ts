@@ -1,5 +1,6 @@
 import { projects } from './profile.ts';
 import { archiveProjects } from './engineering-archive.ts';
+import { homeProjectCopy } from './home-content.ts';
 
 export const disciplines = [
   { id: 'ai', label: 'AI & Data', code: 'AI', color: '#df9dbd', statement: 'From observations to decisions.' },
@@ -46,8 +47,12 @@ export const engineeringNodes = connections.map((connection) => {
   const major = projects.find(project => project.slug === connection.slug);
   const archive = archiveProjects.find(project => project.slug === connection.slug);
   if (!major && !archive) throw new Error(`Missing network evidence: ${connection.slug}`);
+  const copy=homeProjectCopy[connection.slug];
+  const source=(major??archive)!;
+  const recoveredImage=connection.slug==='machine-learning-mnist-classifier'?'/images/mnist-predictions.webp':connection.slug==='stm32-signal-generation'?'/images/stm32-lookup-tables.webp':undefined;
   return { ...connection, primary: connection.links[0].discipline,
-    title: (major ?? archive)!.title, summary: major?.description ?? archive!.summary,
+    title: source.title, summary: copy?.summary??archive?.summary??major!.description,
+    image: source.image??recoveredImage, imageAlt: source.imageAlt??`${connection.label}: retained output or source-derived plot`, credit:copy?.scope??(/collaborative/i.test(archive?.contribution??'')?'Collaborative':undefined), year:source.year, previewStages:major?.pipeline.slice(0,3),
     tags: (major ?? archive)!.tags, href: `/${major ? 'projects' : 'engineering'}/${connection.slug}/`,
     scope: major?.attribution ?? archive!.contribution };
 });

@@ -52,7 +52,7 @@ test('course descriptions do not silently fall back to a different year', () => 
   assert.equal(findCourseContext('UCT CSC3022', '2026'), undefined);
   assert.equal(findCourseContext('UCT EEE2044S', '2021').name, 'Introduction to Power Engineering');
 });
-test('ten genuine credential documents and thumbnails exist; homepage shows four', () => {
+test('ten genuine credential documents and thumbnails exist; four records are featured', () => {
   assert.equal(credentialEvidence.length, 10);
   assert.equal(credentialEvidence.filter(c => c.featured).length, 4);
   for (const c of credentialEvidence) {
