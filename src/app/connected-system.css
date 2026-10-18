@@ -22,3 +22,5 @@ body[data-engineering-district=ai] .journey-city-lights .tower-light:nth-child(-
 .connected-section>.container,.network-reserved{min-height:1060px}.motion-section>.container,.motion-reserved{min-height:640px}
 @media(min-width:701px) and (max-width:1000px){.connected-section>.container,.network-reserved{min-height:1000px}.motion-section>.container,.motion-reserved{min-height:560px}}
 @media(max-width:700px){.connected-section>.container,.network-reserved{min-height:1400px}.motion-section>.container,.motion-reserved{min-height:1500px}}
+.preview-recorded-agent{offset-distance:0%;animation:recorded-route 2.8s linear infinite paused}.project-card-link:is(:hover,:focus-visible) .project-preview[data-animate=true] .preview-recorded-agent{animation-play-state:running}
+@media(prefers-reduced-motion:reduce){.preview-recorded-agent{animation:none!important;offset-distance:100%}}

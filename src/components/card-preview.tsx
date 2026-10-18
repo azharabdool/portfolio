@@ -11,8 +11,8 @@ export function CardPreview({ project }: { project: Project }) {
   if(project.visual==='rooms') {
     const episode=recordings[0];
     const route=[episode.start,...episode.trace.map(step=>step.position)];
-    const path=route.map(([x,y],i)=>`${i?'L':'M'}${87+x*11} ${29+y*9}`).join(' ');
-    return <CardMotion><svg viewBox='0 0 320 180'><text x='10' y='15' className='preview-label'>Q-LEARNING / RECORDED TRAJECTORY</text>{episode.grid.flatMap((row,y)=>row.map((cell,x)=><rect key={`${x}-${y}`} x={82+x*11} y={25+y*9} width='10' height='8' fill={cell===-1?'#7895a355':'#142d38'}/>))}<path d={path} stroke='#dba9c2' strokeWidth='1.3' fill='none'/><circle r='3.5' fill='#e3b7d0' className='preview-agent' style={{offsetPath:`path('${path}')`}}/><text x='10' y='166' className='preview-label'>ORIGINAL RUN / NOT LIVE TRAINING</text></svg></CardMotion>;
+    const path=route.map(([x,y],i)=>`${i?'L':'M'}${92.5+x*10} ${29.5+y*10}`).join(' ');
+    return <CardMotion><svg viewBox='0 0 320 180'><text x='10' y='15' className='preview-label'>Q-LEARNING / RECORDED TRAJECTORY</text>{episode.grid.flatMap((row,y)=>row.map((cell,x)=><rect key={`${x}-${y}`} x={88+x*10} y={25+y*10} width='9' height='9' fill={cell===-1?'#7895a355':'#142d38'}/>))}<path d={path} stroke='#dba9c2' strokeWidth='1.3' fill='none'/><circle r='3.5' fill='#e3b7d0' className='preview-recorded-agent' style={{offsetPath:`path('${path}')`,animationTimingFunction:`steps(${episode.trace.length}, end)`}}/><text x='10' y='166' className='preview-label'>ORIGINAL RUN / NOT LIVE TRAINING</text></svg></CardMotion>;
   }
   if(project.visual==='vision')return <CardMotion><DemoPreview kind='image'/></CardMotion>;
   if(project.visual==='neural')return <CardMotion><Image src='/images/mnist-predictions.webp' alt='' fill sizes='400px' className='preview-predictions'/><span className='preview-caption'>Held-out predictions / 2026 subset experiment</span></CardMotion>;

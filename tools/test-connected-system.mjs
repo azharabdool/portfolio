@@ -54,5 +54,7 @@ test('homepage preserves depth and contains purposeful previews, without a fabri
   assert.match(page,/ConnectedSystem/);assert.match(page,/EngineeringSpotlights/);assert.match(page,/EducationFeature/);assert.doesNotMatch(page,/CityTransition|InteractiveLabCTA/);
   const card=fs.readFileSync(new URL('../src/components/card-preview.tsx',import.meta.url),'utf8');
   assert.match(card,/episode.trace.map/);assert.match(card,/schedule\(jobs,policy\)/);assert.match(card,/NOT AN APP SCREEN/);
+  assert.match(card,/className='preview-recorded-agent'/);assert.doesNotMatch(card,/className='preview-agent'/);
+  const css=fs.readFileSync(new URL('../src/app/connected-system.css',import.meta.url),'utf8');assert.match(css,/\.preview-recorded-agent\{offset-distance:0%;animation:recorded-route/);
   const header=fs.readFileSync(new URL('../src/components/header.tsx',import.meta.url),'utf8');assert.match(header,/CommandLauncher/);
 });
