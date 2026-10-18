@@ -5,6 +5,8 @@ import {disciplines, engineeringNodes, networkPosition} from '../src/data/engine
 import {searchCommands, commandEntries} from '../src/lib/command-index.ts';
 import {projects} from '../src/data/profile.ts';
 import {archiveProjects} from '../src/data/engineering-archive.ts';
+import {analyticsAllowed,anonymousPageUrl} from '../src/lib/traffic-privacy.ts';
+import {idealPwmPath} from '../src/lib/lab-models.ts';
 
 test('six evidence-based disciplines cover every historical record exactly once',()=>{
   assert.equal(disciplines.length,6); assert.equal(engineeringNodes.length,27);
@@ -28,4 +30,29 @@ test('preview loading is deferred and homepage instruments do not mount full dem
   assert.match(source,/mapNear/);assert.match(source,/demosNear/);assert.match(source,/dynamic\(/);
   const demos=fs.readFileSync(new URL('../src/components/mini-engineering-demos.tsx',import.meta.url),'utf8');
   assert.doesNotMatch(demos,/DemoLauncher|iframe|three|webgl/i);assert.match(demos,/episode.trace/);assert.match(demos,/!active\|\|!playing/);
+});
+
+test('traffic measurement excludes previews, privacy opt-outs and private URL components',()=>{
+  assert.equal(analyticsAllowed('azharabdool.vercel.app'),true);
+  assert.equal(analyticsAllowed('portfolio-livid-seven-890kon00eu.vercel.app'),true);
+  for(const host of ['localhost','127.0.0.1','preview.vercel.app','example.com'])assert.equal(analyticsAllowed(host),false);
+  assert.equal(analyticsAllowed('azharabdool.vercel.app','1'),false);
+  assert.equal(analyticsAllowed('azharabdool.vercel.app',null,true),false);
+  assert.equal(anonymousPageUrl('https://azharabdool.vercel.app/projects/?email=private#secret'),'https://azharabdool.vercel.app/projects/');
+  for(const url of ['bad','http://azharabdool.vercel.app/','https://unknown.vercel.app/'])assert.equal(anonymousPageUrl(url),null);
+  const source=fs.readFileSync(new URL('../src/components/traffic-analytics.tsx',import.meta.url),'utf8');
+  assert.match(source,/event.type !== 'pageview'/);assert.match(source,/beforeSend/);assert.doesNotMatch(source,/track\(|identify|localStorage/);
+});
+
+test('ideal PWM is flat at both duty-cycle endpoints, with pulses only between them',()=>{
+  assert.equal(idealPwmPath(0),'M10 110 H300');assert.equal(idealPwmPath(4095),'M10 45 H300');
+  assert.match(idealPwmPath(2048),/V45 H/);assert.match(idealPwmPath(2048),/V110 H/);
+});
+
+test('homepage preserves depth and contains purposeful previews, without a fabricated app screen',()=>{
+  const page=fs.readFileSync(new URL('../src/app/page.tsx',import.meta.url),'utf8');
+  assert.match(page,/ConnectedSystem/);assert.match(page,/EngineeringSpotlights/);assert.match(page,/EducationFeature/);assert.doesNotMatch(page,/CityTransition|InteractiveLabCTA/);
+  const card=fs.readFileSync(new URL('../src/components/card-preview.tsx',import.meta.url),'utf8');
+  assert.match(card,/episode.trace.map/);assert.match(card,/schedule\(jobs,policy\)/);assert.match(card,/NOT AN APP SCREEN/);
+  const header=fs.readFileSync(new URL('../src/components/header.tsx',import.meta.url),'utf8');assert.match(header,/CommandLauncher/);
 });

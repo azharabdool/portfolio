@@ -10,9 +10,9 @@ export function Hero() {
           <p className="eyebrow"><span className="line" /> ENGINEERING ACROSS BOUNDARIES</p>
           <h1 id="hero-title"><span className='hero-name'>Azhar Abdool</span><span className="name-period">.</span></h1>
           <p className="hero-role">Software <span className='role-connector'>&amp;</span> Computer Engineer</p>
-          <p className="hero-description">{profile.intro}</p>
+          <p className="hero-description">Building across software, intelligence and the physical world.</p>
           <div className="hero-actions">
-            <a href="#projects" className="button button-primary">Explore my work <ArrowRight size={17} /></a>
+            <a href="#engineering-map" className="button button-primary">Explore my work <ArrowRight size={17} /></a>
             <a href={profile.cv} className="button button-quiet" aria-label="View general engineering CV">View CV<ArrowDownToLine size={17} /></a>
           </div>
           <div className="hero-socials">
@@ -23,7 +23,7 @@ export function Hero() {
           <a className='hero-academic' href='#education'><span>University of Cape Town</span><span>BSc Computer Science &amp; Computer Engineering <i /> 2025</span></a>
         </div>
         <div className="hero-coordinate" aria-hidden="true"><span>SOFTWARE</span><span>DATA</span><span>HARDWARE</span><i /></div>
-        <a className="scroll-cue" href="#about" aria-label="Read about Azhar"><ArrowDown size={17} /><span>Beyond the code</span></a>
+        <a className="scroll-cue" href="#engineering-map" aria-label="Explore the engineering map"><ArrowDown size={17} /><span>Follow the connections</span></a>
       </div>
     </section>
   );

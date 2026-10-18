@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { ArrowUpRight, BrainCircuit, Code2, Cpu, Network, Server, Zap } from 'lucide-react';
-import { useId, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
+import { useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
 import { disciplines, engineeringNodes, hubPosition, networkPosition, type Discipline } from '@/data/engineering-network';
 import { useVisibleWork } from '@/hooks/use-visible-work';
 
@@ -15,10 +15,10 @@ export default function EngineeringMap() {
   const hub = disciplines.find(item => item.id === discipline)!;
   const node = engineeringNodes.find(item => item.slug === selected)!;
   const connected = engineeringNodes.filter(item => item.links.some(link => link.discipline === discipline)).sort((a,b)=>Number(b.primary===discipline)-Number(a.primary===discipline));
+  useEffect(()=>{document.dispatchEvent(new CustomEvent('engineering-district',{detail:discipline}));},[discipline]);
   function choose(value: Discipline) {
     setDiscipline(value);
     setSelected(engineeringNodes.find(item => item.primary === value)!.slug);
-    document.dispatchEvent(new CustomEvent('engineering-district', {detail:value}));
   }
   function keys(event: KeyboardEvent, index: number) {
     const next = event.key === 'ArrowRight' ? (index + 1) % 6 : event.key === 'ArrowLeft' ? (index + 5) % 6 : event.key === 'Home' ? 0 : event.key === 'End' ? 5 : null;

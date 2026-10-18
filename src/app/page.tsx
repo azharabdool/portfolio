@@ -2,11 +2,10 @@ import Link from 'next/link';
 import { ArrowDownToLine, ArrowUpRight, BriefcaseBusiness, ShieldCheck } from 'lucide-react';
 import { Hero } from '@/components/hero';
 import { ProjectCard } from '@/components/project-card';
-import { InteractiveLabCTA } from '@/components/interactive-lab-cta';
+import { ConnectedSystem } from '@/components/connected-system';
 import { EngineeringSpotlights } from '@/components/engineering-spotlights';
 import { CredentialGrid } from '@/components/credentials';
 import { credentialEvidence } from '@/data/credentials';
-import { CityTransition } from '@/components/city-transition';
 import { MoonJourney } from '@/components/moon-journey';
 import { EducationFeature } from '@/components/education-feature';
 import { profile, projects, skillGroups } from '@/data/profile';
@@ -20,13 +19,12 @@ export default function Home() {
     <MoonJourney />
     <Hero />
     <div className="discipline-band"><div className="container"><span>INTELLIGENT SYSTEMS</span><i /><span>ENTERPRISE SOFTWARE</span><i /><span>COMPUTER ENGINEERING</span><i /><span>SECURITY & NETWORKS</span></div></div>
-    <CityTransition />
+    <ConnectedSystem />
     <section className="section projects-section" id="projects" aria-labelledby="projects-title"><div className="container">
-      <div className="section-heading"><div><SectionLabel number="01">SELECTED WORK</SectionLabel><h2 id="projects-title">Different disciplines.<br /><span>One engineering foundation.</span></h2></div><p className="heading-note">From learning models to moving signals,<br />a selection of work across the stack.</p></div>
+      <div className="section-heading"><div><SectionLabel number="01">SELECTED WORK</SectionLabel><h2 id="projects-title">Built across<br /><span>boundaries.</span></h2></div><p className="heading-note">Models. Software. Signals. Systems.</p></div>
       <div className="featured-grid">{['foundry-ai-infographic-dashboard','machine-learning-mnist-classifier','reinforcement-learning-four-rooms','stm32-signal-generation','uct-tutor-marketplace-app','operating-systems-simulations'].map(slug => <ProjectCard key={slug} project={projects.find(p => p.slug === slug)!}/>)}</div>
-      <EngineeringSpotlights/>
-      <InteractiveLabCTA/>
     </div></section>
+    <section className='section engineering-entry-section' aria-labelledby='engineering-entry-title'><div className='container'><div className='section-heading'><div><p className='eyebrow'>THE ENGINEERING LAB</p><h2 id='engineering-entry-title'>Follow the work<br/><span>all the way down.</span></h2></div><p className='heading-note'>Source, experiments and engineering decisions.</p></div><div className='engineering-entry-links'><Link href='/lab/'>17 engineering studies <ArrowUpRight size={20}/></Link><Link href='/playground/'>10 browser experiences <ArrowUpRight size={20}/></Link><Link href='/projects/'>All 10 major projects <ArrowUpRight size={20}/></Link></div><EngineeringSpotlights/></div></section>
     <section className="section about-section" id="about" aria-labelledby="about-title"><div className="container about-grid">
       <div><SectionLabel number="02">ABOUT</SectionLabel><h2 id="about-title">An engineer across<br /><span>the whole system.</span></h2><div className="about-signature"><span>UCT</span><span>COMPUTER SCIENCE<br />+ COMPUTER ENGINEERING</span></div></div>
       <div className="about-copy"><p className="lead">{profile.about}</p><p>{profile.aboutDetail}</p><a className="profile-link" href="/profile/">About Azhar Abdool <ArrowUpRight size={16}/></a><div className="about-principles"><span>Understand the system.</span><span>Build for the real world.</span><span>Keep the evidence clear.</span></div><div className="resume-options" id="resume"><h3>CVs</h3><a href={profile.cv} className="resume-link" download>General Engineering CV<ArrowDownToLine size={18}/></a><a href={profile.aiCv} className="resume-link" download>AI Engineering CV<ArrowDownToLine size={18}/></a><a className="resume-link" href="/resume/">CV context <ArrowUpRight size={18}/></a></div></div>

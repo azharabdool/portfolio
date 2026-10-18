@@ -7,6 +7,8 @@ import { identityGraph } from '@/lib/seo';
 import { StructuredData } from '@/components/structured-data';
 import { PerformanceProbe } from '@/components/performance-probe';
 import { PointerDepth } from '@/components/pointer-depth';
+import { TrafficAnalytics } from '@/components/traffic-analytics';
+import { EngineeringAmbient } from '@/components/engineering-ambient';
 import './globals.css';
 import './mobile-city.css';
 import './launch-polish.css';
@@ -34,5 +36,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><StructuredData data={identityGraph}/><PerformanceProbe/><PointerDepth/><a href="#main-content" className="skip-link">Skip to content</a><Header /><main id="main-content">{children}</main><Footer /></body></html>;
+  return <html lang="en"><body><StructuredData data={identityGraph}/><PerformanceProbe/><PointerDepth/><EngineeringAmbient/><a href="#main-content" className="skip-link">Skip to content</a><Header /><main id="main-content">{children}</main><Footer /><TrafficAnalytics/></body></html>;
 }

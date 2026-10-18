@@ -11,7 +11,7 @@ export function useVisibleWork<T extends HTMLElement = HTMLDivElement>(margin = 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    const nearby = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) setNear(true); }, { rootMargin: margin });
+    const nearby = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setNear(true); nearby.disconnect(); } }, { rootMargin: margin });
     const viewport = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting));
     const visibility = () => setForeground(!document.hidden);
     visibility(); nearby.observe(node); viewport.observe(node);

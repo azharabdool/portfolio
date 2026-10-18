@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, Pause, Play, RotateCcw } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import replay from '@/data/four-rooms-replay.json';
-import { adcToCompare, schedule } from '@/lib/lab-models';
+import { adcToCompare, idealPwmPath, schedule } from '@/lib/lab-models';
 import { useVisibleWork } from '@/hooks/use-visible-work';
 
 const episode = replay[0];
@@ -19,7 +19,7 @@ export default function MiniEngineeringDemos() {
   const position = episode.trace[step].position;
   const timeline = schedule(jobs,policy);
   const duty = adcToCompare(adc)/48000;
-  const pwm = Array.from({length:5},(_,i)=>`M${10+i*58} 110 V45 H${10+i*58+58*duty} V110 H${10+(i+1)*58}`).join(' ');
+  const pwm = idealPwmPath(adc);
   return <div className='mini-demos' data-animate={active&&playing}>
     <div className='motion-heading'><div><p className='eyebrow'>ENGINEERING, IN MOTION</p><h2>Take the controls.</h2></div><p>Models. Queues. Signals.</p></div>
     <div className='mini-demo-grid'>

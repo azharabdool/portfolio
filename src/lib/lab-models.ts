@@ -13,3 +13,9 @@ export function schedule(jobs:Job[], policy:'FCFS'|'SJF') {
   return timeline;
 }
 export function adcToCompare(adc:number) { return Math.floor(Math.max(0,Math.min(4095,adc))*48000/4095); }
+export function idealPwmPath(adc:number) {
+  const duty=adcToCompare(adc)/48000;
+  if(duty===0)return 'M10 110 H300';
+  if(duty===1)return 'M10 45 H300';
+  return Array.from({length:5},(_,i)=>`M${10+i*58} 110 V45 H${10+i*58+58*duty} V110 H${10+(i+1)*58}`).join(' ');
+}
