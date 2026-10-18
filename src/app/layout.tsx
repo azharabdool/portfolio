@@ -16,6 +16,7 @@ import './final-polish.css';
 import './playground.css';
 import './study-workbench.css';
 import './city-identity.css';
+import './connected-system.css';
 
 export const metadata: Metadata = {
   metadataBase: siteOrigin,
